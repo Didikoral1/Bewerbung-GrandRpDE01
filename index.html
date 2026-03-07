@@ -1,89 +1,883 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<title>Grand RP Admin Bewerbung</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grand RP DE01 – Admin Bewerbung</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --panel: rgba(10, 19, 35, 0.82);
+      --panel-strong: rgba(13, 24, 43, 0.96);
+      --border: rgba(102, 190, 255, 0.22);
+      --text: #eaf4ff;
+      --muted: #9bb5d1;
+      --accent: #4cc9ff;
+      --accent-2: #7a5cff;
+      --success: #62ffd2;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    }
 
-<style>
-body{
-font-family: Arial;
-background:#0f172a;
-color:white;
-margin:0;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-header{
-background:#1e293b;
-padding:40px;
-text-align:center;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-section{
-max-width:900px;
-margin:auto;
-padding:40px;
-}
+    body {
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(76, 201, 255, 0.18), transparent 25%),
+        radial-gradient(circle at 85% 10%, rgba(122, 92, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(98, 255, 210, 0.10), transparent 32%),
+        linear-gradient(135deg, #040812 0%, #07111f 45%, #050b14 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-.card{
-background:#1e293b;
-padding:25px;
-border-radius:10px;
-margin-bottom:20px;
-}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: linear-gradient(to bottom, rgba(255,255,255,0.45), rgba(255,255,255,0.05));
+      pointer-events: none;
+      z-index: 0;
+    }
 
-h1,h2{
-color:#38bdf8;
-}
+    .particles,
+    .particles::before,
+    .particles::after {
+      position: fixed;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      z-index: 0;
+      background-repeat: repeat;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(76,201,255,0.7) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(122,92,255,0.7) 1px, transparent 1.5px);
+      background-size: 180px 180px, 240px 240px, 300px 300px;
+      animation: drift 26s linear infinite;
+      opacity: 0.28;
+    }
 
-</style>
+    .particles::before {
+      animation-duration: 38s;
+      transform: scale(1.08);
+      opacity: 0.18;
+    }
+
+    .particles::after {
+      animation-duration: 52s;
+      transform: scale(1.14);
+      opacity: 0.1;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(0); }
+      to { transform: translateY(-120px); }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(26px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 rgba(76, 201, 255, 0); }
+      50% { box-shadow: 0 0 30px rgba(76, 201, 255, 0.18); }
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .hero {
+      margin-top: 8px;
+      background: linear-gradient(180deg, rgba(13, 23, 40, 0.86), rgba(9, 17, 32, 0.92));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      animation: fadeUp .8s ease forwards;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, rgba(76,201,255,0.14), transparent 35%),
+        linear-gradient(300deg, rgba(122,92,255,0.14), transparent 35%);
+      pointer-events: none;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 22px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 1.15rem;
+      box-shadow: 0 10px 24px rgba(76, 201, 255, 0.24);
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.95rem;
+    }
+
+    .status::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 6px rgba(98,255,210,0.12);
+      animation: pulseGlow 2.4s infinite;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+      padding: 34px 28px 28px;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 4.7rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      text-shadow: 0 0 32px rgba(76, 201, 255, 0.12);
+    }
+
+    .hero-copy p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 700px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      box-shadow: 0 16px 34px rgba(76, 201, 255, 0.22);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .hero-panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 22px;
+      display: grid;
+      gap: 16px;
+      align-content: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .mini-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .mini-label {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+    }
+
+    .mini-value {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 22px;
+      margin-top: 22px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 18px;
+      height: fit-content;
+      background: var(--panel);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      animation: fadeUp .95s ease forwards;
+    }
+
+    .sidebar h3 {
+      font-size: 0.95rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      margin-bottom: 12px;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 14px 14px;
+      transition: .2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: linear-gradient(135deg, rgba(76,201,255,0.12), rgba(122,92,255,0.12));
+      border-color: rgba(76,201,255,0.28);
+      transform: translateX(3px);
+    }
+
+    .nav-index {
+      min-width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      display: grid;
+      place-items: center;
+      font-size: 0.88rem;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .sidebar-note {
+      padding: 15px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.6;
+    }
+
+    .content {
+      display: grid;
+      gap: 20px;
+    }
+
+    .section-card {
+      position: relative;
+      background: var(--panel);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 26px;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .section-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(76,201,255,0.05), transparent 30%, rgba(122,92,255,0.05));
+      pointer-events: none;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      margin-bottom: 8px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 700px;
+    }
+
+    .section-tag {
+      white-space: nowrap;
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(76,201,255,0.08);
+      border: 1px solid rgba(76,201,255,0.18);
+      font-size: .88rem;
+      font-weight: 700;
+    }
+
+    .grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .info-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px;
+      padding: 18px;
+      transition: .2s ease;
+    }
+
+    .info-box:hover {
+      transform: translateY(-2px);
+      border-color: rgba(76,201,255,0.25);
+    }
+
+    .info-box h4 {
+      font-size: 0.96rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .info-box p,
+    .info-box li {
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .info-box ul {
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .timeline {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .timeline-date {
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(76,201,255,0.08);
+      border: 1px solid rgba(76,201,255,0.16);
+      color: var(--accent);
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .timeline-body {
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .timeline-body h4 {
+      margin-bottom: 8px;
+      font-size: 1.08rem;
+    }
+
+    .timeline-body p {
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .quote {
+      position: relative;
+      z-index: 1;
+      padding: 22px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(76,201,255,0.08), rgba(122,92,255,0.08));
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #f6fbff;
+      font-size: 1.04rem;
+      line-height: 1.75;
+    }
+
+    .footer {
+      margin-top: 22px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      padding-bottom: 18px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero-content,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        top: 0;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 18px, 1200px);
+        padding-top: 10px;
+      }
+
+      .hero-top,
+      .hero-content,
+      .section-card {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .grid,
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="particles"></div>
 
-<header>
-<h1>Administrator Bewerbung</h1>
-<p>Grand RP Server DE01</p>
-</header>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-top">
+        <div class="brand">
+          <div class="brand-badge">A</div>
+          <div>
+            <div style="font-size:1.05rem;">Grand RP DE01</div>
+            <div style="color: var(--muted); font-size: 0.92rem; font-weight: 600; margin-top: 2px;">Bewerbung für das Administrator-Team</div>
+          </div>
+        </div>
+        <div class="status">Bewerbung bereit zur Prüfung</div>
+      </div>
 
-<section>
+      <div class="hero-content">
+        <div class="hero-copy">
+          <div class="eyebrow">Admin Application • Premium Portfolio</div>
+          <h1>Administrator Bewerbung<br>für Grand RP DE01</h1>
+          <p>
+            Willkommen auf meiner interaktiven Bewerbungsseite. Hier finden Sie strukturiert meine
+            OOC-Informationen, IC-Details, Karriere, Stärken, Erfahrung und Motivation – modern,
+            übersichtlich und mit direkter Navigation durch alle Kategorien.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#ooc">OOC Infos öffnen</a>
+            <a class="btn btn-secondary" href="#ic">IC Infos ansehen</a>
+          </div>
+        </div>
 
-<div class="card">
-<h2>Über mich</h2>
-<p>
-Name: Dein Name<br>
-Alter: Dein Alter<br>
-Discord: DeinDiscord<br>
-Spielzeit: XXXX Stunden
-</p>
-</div>
+        <aside class="hero-panel">
+          <div class="mini-card">
+            <div class="mini-label">Position</div>
+            <div class="mini-value">Administrator</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-label">Server</div>
+            <div class="mini-value">Grand RP DE01</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-label">Bewerbungsstatus</div>
+            <div class="mini-value">Aktiv & vollständig</div>
+          </div>
+        </aside>
+      </div>
+    </header>
 
-<div class="card">
-<h2>Warum ich Admin werden möchte</h2>
-<p>
-Ich möchte den Server unterstützen und Spielern helfen.
-Mir ist Fairness wichtig und ich möchte Regelverstöße verhindern.
-</p>
-</div>
+    <div class="layout">
+      <nav class="sidebar reveal">
+        <h3>Kategorien</h3>
+        <div class="nav-list">
+          <a class="nav-link active" href="#ooc"><span class="nav-index">01</span><span>OOC Infos</span></a>
+          <a class="nav-link" href="#ic"><span class="nav-index">02</span><span>IC Infos</span></a>
+          <a class="nav-link" href="#karriere"><span class="nav-index">03</span><span>Karriere</span></a>
+          <a class="nav-link" href="#staerken"><span class="nav-index">04</span><span>Stärken</span></a>
+          <a class="nav-link" href="#erfahrung"><span class="nav-index">05</span><span>Erfahrung</span></a>
+          <a class="nav-link" href="#motivation"><span class="nav-index">06</span><span>Motivation</span></a>
+          <a class="nav-link" href="#kontakt"><span class="nav-index">07</span><span>Kontakt</span></a>
+        </div>
+        <div class="sidebar-note">
+          Diese Seite ist als moderne Bewerbung aufgebaut. Alle Daten können später direkt im HTML-Code
+          angepasst werden.
+        </div>
+      </nav>
 
-<div class="card">
-<h2>Stärken</h2>
-<ul>
-<li>ruhig bleiben</li>
-<li>Regelkenntnisse</li>
-<li>Teamfähigkeit</li>
-<li>viel Onlinezeit</li>
-</ul>
-</div>
+      <main class="content">
+        <section class="section-card reveal" id="ooc">
+          <div class="section-head">
+            <div>
+              <h2>OOC Informationen</h2>
+              <p>Hier stehen alle wichtigen Informationen über mich außerhalb des Roleplays.</p>
+            </div>
+            <div class="section-tag">Out of Character</div>
+          </div>
 
-<div class="card">
-<h2>Kontakt</h2>
-<p>
-Discord: DeinDiscord<br>
-Steam: DeinSteam
-</p>
-</div>
+          <div class="grid">
+            <div class="info-box">
+              <h4>Persönliche Daten</h4>
+              <p><strong>Name:</strong> Dein Name<br><strong>Alter:</strong> Dein Alter<br><strong>Wohnort:</strong> Deutschland</p>
+            </div>
+            <div class="info-box">
+              <h4>Erreichbarkeit</h4>
+              <p><strong>Discord:</strong> DeinDiscord#0000<br><strong>Onlinezeiten:</strong> Täglich flexibel<br><strong>Mikrofon:</strong> Ja</p>
+            </div>
+            <div class="info-box">
+              <h4>Verfügbarkeit</h4>
+              <p>Ich bin unter der Woche sowie am Wochenende regelmäßig online und kann zuverlässig Support leisten.</p>
+            </div>
+            <div class="info-box">
+              <h4>Besondere Eigenschaften</h4>
+              <ul>
+                <li>ruhig in stressigen Situationen</li>
+                <li>respektvoller Umgang mit Spielern</li>
+                <li>konzentriertes Arbeiten im Team</li>
+              </ul>
+            </div>
+          </div>
+        </section>
 
-</section>
+        <section class="section-card reveal" id="ic">
+          <div class="section-head">
+            <div>
+              <h2>IC Informationen</h2>
+              <p>Dieser Bereich zeigt die wichtigsten Ingame-Informationen und RP-bezogenen Fakten.</p>
+            </div>
+            <div class="section-tag">In Character</div>
+          </div>
 
+          <div class="grid">
+            <div class="info-box">
+              <h4>Charaktername</h4>
+              <p><strong>Name:</strong> Dein IC Name<br><strong>Alter:</strong> 28 Jahre<br><strong>Herkunft:</strong> Los Santos</p>
+            </div>
+            <div class="info-box">
+              <h4>Charakterprofil</h4>
+              <p>Mein Charakter handelt strukturiert, diszipliniert und lösungsorientiert. Ordnung, Fairness und Verantwortung stehen im Vordergrund.</p>
+            </div>
+            <div class="info-box">
+              <h4>Ingame Aktivität</h4>
+              <p><strong>Fraktionserfahrung:</strong> Vorhanden<br><strong>RP Kenntnisse:</strong> Sehr gut<br><strong>Serverkenntnisse:</strong> Umfangreich</p>
+            </div>
+            <div class="info-box">
+              <h4>Ziele im RP</h4>
+              <ul>
+                <li>regelkonformes und sauberes Roleplay fördern</li>
+                <li>Spielern schnell helfen</li>
+                <li>Serverstruktur aktiv unterstützen</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card reveal" id="karriere">
+          <div class="section-head">
+            <div>
+              <h2>Karriere</h2>
+              <p>Eine kompakte Übersicht über meinen bisherigen Weg, meine Entwicklung und meine Ziele.</p>
+            </div>
+            <div class="section-tag">Werdegang</div>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">Start</div>
+              <div class="timeline-body">
+                <h4>Einstieg in Grand RP</h4>
+                <p>Direkter Fokus auf Regelverständnis, sauberes Verhalten und aktives Einbringen in die Community.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">Aufbau</div>
+              <div class="timeline-body">
+                <h4>Weiterentwicklung</h4>
+                <p>Vertiefung von RP-Wissen, Kennenlernen wichtiger Abläufe und Ausbau der eigenen Präsenz auf dem Server.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">Heute</div>
+              <div class="timeline-body">
+                <h4>Bewerbung als Administrator</h4>
+                <p>Mit Verantwortung, Übersicht und Motivation möchte ich den nächsten Schritt gehen und das Team aktiv unterstützen.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card reveal" id="staerken">
+          <div class="section-head">
+            <div>
+              <h2>Stärken</h2>
+              <p>Die wichtigsten Eigenschaften, die mich für eine Position im Administrator-Team qualifizieren.</p>
+            </div>
+            <div class="section-tag">Skills</div>
+          </div>
+
+          <div class="grid">
+            <div class="info-box">
+              <h4>Kommunikation</h4>
+              <p>Ich kann klar, ruhig und verständlich mit Spielern und Teammitgliedern kommunizieren.</p>
+            </div>
+            <div class="info-box">
+              <h4>Belastbarkeit</h4>
+              <p>Auch bei vielen Anfragen oder schwierigen Situationen bleibe ich ruhig und handle überlegt.</p>
+            </div>
+            <div class="info-box">
+              <h4>Fairness</h4>
+              <p>Ich treffe Entscheidungen sachlich und orientiere mich an Regeln statt an Emotionen.</p>
+            </div>
+            <div class="info-box">
+              <h4>Teamarbeit</h4>
+              <p>Ich arbeite gern strukturiert im Team und unterstütze andere zuverlässig bei gemeinsamen Aufgaben.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card reveal" id="erfahrung">
+          <div class="section-head">
+            <div>
+              <h2>Erfahrung</h2>
+              <p>Hier sind die wichtigsten Punkte meiner bisherigen Erfahrung im Support, RP und Community-Umgang.</p>
+            </div>
+            <div class="section-tag">Praxis</div>
+          </div>
+
+          <div class="grid">
+            <div class="info-box">
+              <h4>Support</h4>
+              <p>Erfahrung im Lösen von Konflikten, Beantworten von Fragen und Bearbeiten von Regelverstößen.</p>
+            </div>
+            <div class="info-box">
+              <h4>Moderation</h4>
+              <p>Verständnis für gerechtes Eingreifen, saubere Dokumentation und professionelles Auftreten.</p>
+            </div>
+            <div class="info-box">
+              <h4>Regelkenntnis</h4>
+              <p>Ich beschäftige mich intensiv mit Regeln und achte auf eine konsequente, faire Anwendung.</p>
+            </div>
+            <div class="info-box">
+              <h4>Community</h4>
+              <p>Ein respektvoller Umgang mit der Community ist für mich selbstverständlich und besonders wichtig.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card reveal" id="motivation">
+          <div class="section-head">
+            <div>
+              <h2>Motivation</h2>
+              <p>Warum ich mich bewerbe und was ich als Administrator auf Grand RP DE01 erreichen möchte.</p>
+            </div>
+            <div class="section-tag">Warum ich?</div>
+          </div>
+
+          <div class="quote">
+            Ich bewerbe mich als Administrator, weil ich nicht nur spielen, sondern den Server aktiv mitgestalten möchte.
+            Mir ist ein gerechtes, stabiles und angenehmes Spielerlebnis wichtig. Ich möchte Verantwortung übernehmen,
+            Spielern helfen und gemeinsam mit dem Team dazu beitragen, Grand RP DE01 langfristig auf hohem Niveau zu halten.
+          </div>
+        </section>
+
+        <section class="section-card reveal" id="kontakt">
+          <div class="section-head">
+            <div>
+              <h2>Kontakt</h2>
+              <p>Alle wichtigen Kontaktinformationen für Rückfragen und weitere Gespräche.</p>
+            </div>
+            <div class="section-tag">Reach Out</div>
+          </div>
+
+          <div class="grid">
+            <div class="info-box">
+              <h4>Discord</h4>
+              <p>DeinDiscord#0000</p>
+            </div>
+            <div class="info-box">
+              <h4>Ingame Name</h4>
+              <p>Dein IC / OOC Name</p>
+            </div>
+            <div class="info-box">
+              <h4>Verfügbarkeit</h4>
+              <p>Täglich erreichbar, insbesondere in den Abendstunden und am Wochenende.</p>
+            </div>
+            <div class="info-box">
+              <h4>Abschluss</h4>
+              <p>Vielen Dank für Ihre Zeit und das Lesen meiner Bewerbung. Ich freue mich auf eine Rückmeldung.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">Grand RP DE01 • Interaktive Administrator Bewerbung • Erstellt als moderne Portfolio-Seite</div>
+  </div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = [...document.querySelectorAll('main section')];
+
+    const setActive = () => {
+      let currentId = sections[0].id;
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if (top <= 180) currentId = section.id;
+      });
+
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+      });
+    };
+
+    window.addEventListener('scroll', setActive);
+    window.addEventListener('load', setActive);
+  </script>
 </body>
 </html>
