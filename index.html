@@ -3,36 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rambo Familie – Corporate Empire</title>
+  <title>Rambo Familie – Netzwerk</title>
   <style>
     :root {
-      --bg: #07101d;
-      --bg2: #0b1526;
-      --panel: rgba(13, 21, 37, 0.88);
-      --panel-2: rgba(18, 29, 49, 0.98);
+      --bg: #0b1020;
+      --bg-2: #121a31;
+      --panel: rgba(15, 22, 42, 0.94);
+      --panel-2: rgba(18, 28, 52, 0.98);
       --line: rgba(255,255,255,0.08);
-      --line-strong: rgba(91,184,255,0.22);
-      --text: #edf4ff;
-      --muted: #9db0cb;
-      --accent: #5bb8ff;
-      --accent2: #7c60ff;
-      --accent3: #74ffd1;
-      --danger: #ff8d8d;
-      --shadow: 0 22px 60px rgba(0,0,0,0.42);
-      --radius: 28px;
+      --text: #eef4ff;
+      --muted: #9fb0d3;
+      --accent: #75b9ff;
+      --accent-2: #9b7bff;
+      --success: #6cffc9;
+      --shadow: 0 18px 50px rgba(0,0,0,0.42);
+      --radius: 24px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
       font-family: Inter, Arial, Helvetica, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 10% 10%, rgba(91,184,255,0.18), transparent 22%),
-        radial-gradient(circle at 90% 0%, rgba(124,96,255,0.16), transparent 24%),
-        radial-gradient(circle at 50% 100%, rgba(116,255,209,0.08), transparent 26%),
-        linear-gradient(135deg, #050d18 0%, #091322 45%, #07101d 100%);
+        radial-gradient(circle at 15% 10%, rgba(117,185,255,0.15), transparent 22%),
+        radial-gradient(circle at 85% 5%, rgba(155,123,255,0.13), transparent 24%),
+        linear-gradient(135deg, #080d1a 0%, #0d1427 45%, #0a1020 100%);
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -45,39 +41,28 @@
         linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
       background-size: 34px 34px;
-      mask-image: linear-gradient(to bottom, rgba(255,255,255,0.55), rgba(255,255,255,0.08));
+      mask-image: linear-gradient(to bottom, rgba(255,255,255,0.55), rgba(255,255,255,0.05));
       pointer-events: none;
       z-index: 0;
-    }
-
-    .glow {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background:
-        radial-gradient(circle at 20% 18%, rgba(91,184,255,0.08), transparent 20%),
-        radial-gradient(circle at 82% 12%, rgba(124,96,255,0.08), transparent 22%),
-        radial-gradient(circle at 50% 88%, rgba(116,255,209,0.05), transparent 24%);
     }
 
     .page {
-      width: min(1440px, calc(100% - 28px));
+      width: min(1440px, calc(100% - 24px));
       margin: 0 auto;
-      padding: 18px 0 40px;
+      padding: 16px 0 34px;
       position: relative;
       z-index: 1;
     }
 
-    .topbar {
+    .top-nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 14px;
-      padding: 16px 20px;
+      padding: 14px 18px;
       border: 1px solid var(--line);
-      border-radius: 22px;
-      background: rgba(11, 18, 31, 0.76);
+      border-radius: 999px;
+      background: rgba(10, 17, 32, 0.82);
       backdrop-filter: blur(14px);
       box-shadow: var(--shadow);
       margin-bottom: 18px;
@@ -87,95 +72,112 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 14px;
+      font-weight: 800;
     }
 
     .logo {
-      width: 54px;
-      height: 54px;
-      border-radius: 18px;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      font-weight: 900;
-      font-size: 1.2rem;
-      box-shadow: 0 12px 28px rgba(91,184,255,0.24);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 12px 28px rgba(117,185,255,0.22);
+      font-size: 1.1rem;
     }
 
-    .brand h1 { font-size: 1.2rem; margin-bottom: 2px; }
-    .brand p { color: var(--muted); font-size: 0.94rem; }
-
-    .top-actions {
+    .nav-links {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+    .nav-link {
+      text-decoration: none;
+      color: var(--text);
       padding: 11px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
-      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
       font-size: 0.92rem;
+      font-weight: 700;
+      transition: .2s ease;
+      cursor: pointer;
     }
 
-    .badge::before {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent3);
-      box-shadow: 0 0 0 6px rgba(116,255,209,0.12);
+    .nav-link:hover,
+    .nav-link.active {
+      background: linear-gradient(135deg, rgba(117,185,255,0.14), rgba(155,123,255,0.14));
+      border-color: rgba(117,185,255,0.24);
+      transform: translateY(-1px);
     }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 20px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(15,24,40,0.94), rgba(10,17,29,0.98));
-      box-shadow: var(--shadow);
-      overflow: hidden;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
       margin-bottom: 18px;
-      min-height: 430px;
     }
 
-    .hero-left {
-      padding: 38px 32px;
+    .hero-main,
+    .hero-side {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(16, 25, 46, 0.96), rgba(11, 18, 33, 0.98));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-main {
+      min-height: 420px;
+      position: relative;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(117,185,255,0.18), transparent 30%),
+        linear-gradient(300deg, rgba(155,123,255,0.16), transparent 35%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 36px 32px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      min-height: 100%;
       gap: 18px;
     }
 
     .eyebrow {
       color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: .24em;
+      letter-spacing: .2em;
       font-size: .82rem;
       font-weight: 800;
     }
 
-    .hero-left h2 {
-      font-size: clamp(2.5rem, 5vw, 5.4rem);
-      line-height: .95;
+    .hero-content h1 {
+      font-size: clamp(2.7rem, 5vw, 5.8rem);
+      line-height: .92;
       letter-spacing: -0.05em;
-      max-width: 900px;
+      max-width: 760px;
     }
 
-    .hero-left p {
+    .hero-content p {
       color: var(--muted);
       line-height: 1.85;
-      max-width: 780px;
-      font-size: 1.06rem;
+      max-width: 760px;
+      font-size: 1.04rem;
     }
 
-    .hero-actions {
+    .hero-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
@@ -186,7 +188,7 @@
       text-decoration: none;
       padding: 14px 18px;
       border-radius: 14px;
-      font-weight: 700;
+      font-weight: 800;
       border: 1px solid transparent;
       transition: .2s ease;
       display: inline-flex;
@@ -197,155 +199,102 @@
 
     .btn:hover { transform: translateY(-2px); }
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: white;
-      box-shadow: 0 16px 32px rgba(91,184,255,0.22);
+      box-shadow: 0 16px 32px rgba(117,185,255,0.22);
     }
     .btn-secondary {
       background: rgba(255,255,255,0.04);
-      border-color: rgba(255,255,255,0.1);
       color: var(--text);
+      border-color: rgba(255,255,255,0.08);
     }
 
-    .hero-right {
-      padding: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-      border-left: 1px solid var(--line);
+    .hero-side {
+      padding: 22px;
       display: grid;
       gap: 14px;
-      align-content: center;
+      align-content: start;
     }
 
-    .stats-grid {
+    .server-box {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .server-box h3 {
+      font-size: 0.86rem;
+      color: var(--muted);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .server-ip {
+      font-size: clamp(1.2rem, 2vw, 1.8rem);
+      font-weight: 900;
+      margin-bottom: 8px;
+      word-break: break-word;
+    }
+
+    .online {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .online::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 6px rgba(108,255,201,0.12);
+    }
+
+    .mini-stats {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
     }
 
-    .stat {
+    .mini-card {
+      border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
-      border-radius: 20px;
-      padding: 20px;
+      background: rgba(255,255,255,0.03);
+      padding: 18px;
       min-height: 120px;
     }
 
-    .stat span {
+    .mini-card span {
       display: block;
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: .14em;
-      font-size: .8rem;
+      font-size: .78rem;
       margin-bottom: 8px;
     }
 
-    .stat strong { font-size: 1.18rem; display: block; margin-bottom: 6px; }
-    .stat small { color: var(--muted); line-height: 1.6; display: block; }
-
-    .quick-banner {
-      border: 1px solid rgba(91,184,255,0.18);
-      background: linear-gradient(135deg, rgba(91,184,255,0.10), rgba(124,96,255,0.10));
-      border-radius: 22px;
-      padding: 20px;
-      line-height: 1.8;
-      color: #f6fbff;
+    .mini-card strong {
+      display: block;
+      font-size: 1.14rem;
+      margin-bottom: 6px;
     }
 
-    .grid-layout {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 18px;
-    }
-
-    .sidebar {
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      background: rgba(12, 19, 32, 0.88);
-      backdrop-filter: blur(14px);
-      box-shadow: var(--shadow);
-      padding: 18px;
-      height: fit-content;
-      position: sticky;
-      top: 14px;
-    }
-
-    .sidebar h3 {
+    .mini-card small {
       color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      font-size: .86rem;
-      margin-bottom: 12px;
+      line-height: 1.6;
+      display: block;
     }
 
-    .nav-list {
-      display: grid;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 13px 12px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      color: var(--text);
-      text-decoration: none;
-      transition: .2s ease;
-      cursor: pointer;
-    }
-
-    .nav-link:hover, .nav-link.active {
-      transform: translateX(3px);
-      background: linear-gradient(135deg, rgba(91,184,255,0.12), rgba(123,97,255,0.12));
-      border-color: rgba(91,184,255,0.25);
-    }
-
-    .nav-id {
-      min-width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.06);
-      color: var(--accent);
-      font-weight: 800;
-      font-size: .86rem;
-    }
-
-    .sidebar-box {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 14px;
-      margin-top: 14px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .mini-panel {
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 18px;
-      background: rgba(255,255,255,0.03);
-      padding: 14px;
-    }
-
-    .mini-panel h4 {
-      color: var(--accent);
-      font-size: .86rem;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      margin-bottom: 8px;
-    }
-
-    .mini-panel p { color: var(--muted); line-height: 1.7; font-size: .94rem; }
-
-    .content-shell {
+    .shell {
       border: 1px solid var(--line);
       border-radius: 28px;
-      background: linear-gradient(180deg, rgba(15,24,40,0.97), rgba(10,17,29,0.99));
+      background: linear-gradient(180deg, rgba(15,24,40,0.98), rgba(10,17,29,0.99));
       box-shadow: var(--shadow);
-      min-height: 900px;
       overflow: hidden;
     }
 
@@ -354,6 +303,7 @@
       padding: 28px;
       animation: fade .35s ease;
     }
+
     .panel.active { display: block; }
 
     @keyframes fade {
@@ -361,25 +311,25 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .panel-head {
+    .section-head {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
       gap: 18px;
-      padding-bottom: 18px;
-      margin-bottom: 20px;
+      align-items: flex-start;
+      margin-bottom: 22px;
+      padding-bottom: 16px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    .panel-head h3 {
-      font-size: clamp(1.5rem, 2vw, 2.15rem);
+    .section-head h2 {
+      font-size: clamp(1.55rem, 2vw, 2.3rem);
       margin-bottom: 8px;
     }
 
-    .panel-head p {
+    .section-head p {
       color: var(--muted);
       line-height: 1.8;
-      max-width: 820px;
+      max-width: 860px;
     }
 
     .tag {
@@ -387,64 +337,40 @@
       padding: 10px 14px;
       border-radius: 999px;
       color: var(--accent);
-      border: 1px solid rgba(91,184,255,0.22);
-      background: rgba(91,184,255,0.08);
-      font-size: .86rem;
+      border: 1px solid rgba(117,185,255,0.22);
+      background: rgba(117,185,255,0.08);
+      font-size: .84rem;
       font-weight: 700;
     }
 
-    .section-block {
-      margin-bottom: 24px;
-    }
-
-    .section-block:last-child { margin-bottom: 0; }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .section-title h4 {
-      font-size: 1.05rem;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      color: var(--accent);
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
+    .cards-2,
     .cards-3 {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
     }
 
-    .card {
+    .cards-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cards-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .card,
+    .news-card {
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 22px;
       background: rgba(255,255,255,0.03);
       padding: 20px;
-      min-height: 160px;
     }
 
-    .card h4 {
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      font-size: .86rem;
+    .card h3,
+    .news-card h3 {
+      font-size: 1.15rem;
       margin-bottom: 10px;
     }
 
-    .card p, .card li {
+    .card p,
+    .card li,
+    .news-card p {
+      color: var(--muted);
       line-height: 1.82;
-      color: var(--text);
     }
 
     .card ul {
@@ -453,47 +379,72 @@
       gap: 8px;
     }
 
-    .highlight {
-      border: 1px solid rgba(91,184,255,0.22);
-      background: linear-gradient(135deg, rgba(91,184,255,0.10), rgba(123,97,255,0.10));
-      border-radius: 24px;
-      padding: 24px;
-      line-height: 1.95;
-      color: #f6faff;
-    }
-
-    .timeline {
+    .news-grid {
       display: grid;
-      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
     }
 
-    .timeline-item {
+    .news-card {
       display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 14px;
+      grid-template-columns: 84px 1fr;
+      gap: 18px;
+      align-items: start;
+      min-height: 230px;
     }
 
-    .timeline-date {
+    .date-box {
       border-radius: 18px;
-      padding: 18px;
+      border: 1px solid rgba(117,185,255,0.22);
+      background: rgba(117,185,255,0.08);
+      padding: 14px 10px;
       text-align: center;
-      border: 1px solid rgba(91,184,255,0.2);
-      background: rgba(91,184,255,0.08);
+    }
+
+    .date-box strong {
+      display: block;
+      font-size: 1.45rem;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .date-box span {
+      display: block;
+      font-size: .86rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+    }
+
+    .news-meta {
       color: var(--accent);
-      font-weight: 800;
+      font-size: .88rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
     }
 
-    .timeline-body {
-      border-radius: 22px;
-      padding: 20px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
+    .feature-banner {
+      border: 1px solid rgba(117,185,255,0.22);
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(117,185,255,0.10), rgba(155,123,255,0.10));
+      padding: 24px;
+      margin-bottom: 18px;
     }
 
-    .timeline-body h4 { margin-bottom: 8px; font-size: 1.05rem; }
-    .timeline-body p { color: var(--muted); line-height: 1.82; }
+    .feature-banner h3 {
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+    }
 
-    .table-wrap {
+    .feature-banner p {
+      color: var(--muted);
+      line-height: 1.82;
+      max-width: 900px;
+    }
+
+    .info-table {
       overflow: auto;
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 22px;
@@ -501,43 +452,27 @@
 
     table {
       width: 100%;
-      border-collapse: collapse;
       min-width: 720px;
+      border-collapse: collapse;
       background: rgba(255,255,255,0.03);
     }
 
     th, td {
       padding: 16px 18px;
-      text-align: left;
       border-bottom: 1px solid rgba(255,255,255,0.08);
+      text-align: left;
     }
 
     th {
       color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: .12em;
       font-size: .8rem;
+      letter-spacing: .14em;
       background: rgba(255,255,255,0.03);
     }
 
     td { color: var(--text); }
     tr:last-child td { border-bottom: 0; }
-
-    .kpi-bar {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .kpi {
-      border-radius: 22px;
-      padding: 22px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .kpi strong { display: block; font-size: 1.8rem; margin-bottom: 8px; }
-    .kpi span { color: var(--muted); line-height: 1.6; }
 
     .contact-grid {
       display: grid;
@@ -547,21 +482,18 @@
 
     .contact-card {
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 24px;
+      border-radius: 22px;
       background: rgba(255,255,255,0.03);
       padding: 22px;
     }
 
-    .contact-card h4 {
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      font-size: .86rem;
+    .contact-card h3 {
       margin-bottom: 12px;
     }
 
-    .contact-card p, .contact-card li {
-      color: var(--text);
+    .contact-card p,
+    .contact-card li {
+      color: var(--muted);
       line-height: 1.82;
     }
 
@@ -586,7 +518,7 @@
       display: grid;
       gap: 8px;
       color: var(--muted);
-      font-size: .95rem;
+      font-size: .94rem;
     }
 
     input, textarea, select {
@@ -601,393 +533,365 @@
     }
 
     input:focus, textarea:focus, select:focus {
-      border-color: rgba(91,184,255,0.35);
-      box-shadow: 0 0 0 4px rgba(91,184,255,0.08);
+      border-color: rgba(117,185,255,0.35);
+      box-shadow: 0 0 0 4px rgba(117,185,255,0.08);
     }
 
     textarea { min-height: 170px; resize: vertical; }
 
-    .form-note {
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: .92rem;
-    }
-
-    .form-submit {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
     .footer {
-      color: var(--muted);
       text-align: center;
+      color: var(--muted);
       padding: 18px 0 6px;
       font-size: .94rem;
     }
 
-    @media (max-width: 1200px) {
-      .cards-3, .kpi-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .contact-grid { grid-template-columns: 1fr; }
+    @media (max-width: 1100px) {
+      .hero,
+      .contact-grid,
+      .news-grid,
+      .cards-3 { grid-template-columns: 1fr; }
     }
 
-    @media (max-width: 980px) {
-      .hero, .grid-layout { grid-template-columns: 1fr; }
-      .hero-right { border-left: 0; border-top: 1px solid var(--line); }
-      .sidebar { position: relative; top: 0; }
-      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 820px) {
+      .cards-2,
+      .form-row,
+      .mini-stats { grid-template-columns: 1fr; }
+      .news-card { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 720px) {
-      .page { width: min(100% - 16px, 1440px); }
-      .cards, .cards-3, .timeline-item, .kpi-bar, .form-row, .stats-grid { grid-template-columns: 1fr; }
-      .panel-head { flex-direction: column; }
-      .hero-actions, .form-submit { flex-direction: column; }
+      .page { width: min(100% - 14px, 1440px); }
+      .panel,
+      .hero-content,
+      .hero-side { padding: 18px; }
+      .section-head { flex-direction: column; }
+      .hero-buttons { flex-direction: column; }
       .btn { width: 100%; }
     }
   </style>
 </head>
 <body>
-  <div class="glow"></div>
   <div class="page">
-    <div class="topbar">
+    <header class="top-nav">
       <div class="brand">
         <div class="logo">R</div>
         <div>
-          <h1>Rambo Familie</h1>
-          <p>Corporate Empire • Große Premium-Präsentation</p>
+          <div style="font-size:1.05rem;">Rambo Familie</div>
+          <div style="color: var(--muted); font-size: 0.9rem;">Netzwerk Startseite</div>
         </div>
       </div>
-      <div class="top-actions">
-        <div class="badge">Netzwerk aktiv</div>
-        <div class="badge">Aufnahme offen</div>
-      </div>
-    </div>
+
+      <nav class="nav-links">
+        <a class="nav-link active" href="#" data-panel="home">HOME</a>
+        <a class="nav-link" href="#" data-panel="news">NEWS</a>
+        <a class="nav-link" href="#" data-panel="stats">STATS</a>
+        <a class="nav-link" href="#" data-panel="team">TEAM</a>
+        <a class="nav-link" href="#" data-panel="bewerben">BEWERBEN</a>
+        <a class="nav-link" href="#" data-panel="kontakt">KONTAKT</a>
+      </nav>
+    </header>
 
     <section class="hero">
-      <div class="hero-left">
-        <div class="eyebrow">Corporate Family Identity</div>
-        <h2>Rambo.<br>Groß. Präzise. Eindrucksvoll.</h2>
-        <p>
-          Diese Version ist deutlich größer, hochwertiger und kompakter aufgebaut. Die Rambo Familie wird hier wie ein modernes Unternehmen mit mehreren Bereichen, Leistungsübersicht, Führungssystem, internen Abteilungen, Karrierestufen und Kontaktformular präsentiert.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#" data-panel-link="start">Start öffnen</a>
-          <a class="btn btn-secondary" href="#" data-panel-link="kontakt">Kontaktformular</a>
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <div class="stats-grid">
-          <div class="stat"><span>Identität</span><strong>Rambo Familie</strong><small>Starker Name mit modernem Firmenauftritt und klarer Außendarstellung.</small></div>
-          <div class="stat"><span>Positionierung</span><strong>Premium Netzwerk</strong><small>Professionell, organisiert und sichtbar strukturiert.</small></div>
-          <div class="stat"><span>Leitbild</span><strong>Loyalität & Kontrolle</strong><small>Interne Stabilität, Disziplin und klare Verantwortlichkeiten.</small></div>
-          <div class="stat"><span>Status</span><strong>Aktiv & bereit</strong><small>Präsentation, Aufnahme und Kommunikation vorbereitet.</small></div>
-        </div>
-        <div class="quick-banner">
-          Die Website ist jetzt größer aufgebaut, enthält mehr Blöcke, mehr Inhalte und eine deutlich stärkere Firmenwirkung. Jede Kategorie öffnet weiterhin ihre eigene Ansicht.
-        </div>
-      </div>
-    </section>
-
-    <div class="grid-layout">
-      <aside class="sidebar">
-        <h3>Navigation</h3>
-        <div class="nav-list">
-          <a class="nav-link active" href="#" data-panel="start"><span class="nav-id">00</span><span>Startseite</span></a>
-          <a class="nav-link" href="#" data-panel="ueber"><span class="nav-id">01</span><span>Über uns</span></a>
-          <a class="nav-link" href="#" data-panel="struktur"><span class="nav-id">02</span><span>Struktur</span></a>
-          <a class="nav-link" href="#" data-panel="bereiche"><span class="nav-id">03</span><span>Bereiche</span></a>
-          <a class="nav-link" href="#" data-panel="leistungen"><span class="nav-id">04</span><span>Leistungen</span></a>
-          <a class="nav-link" href="#" data-panel="werte"><span class="nav-id">05</span><span>Werte</span></a>
-          <a class="nav-link" href="#" data-panel="karriere"><span class="nav-id">06</span><span>Karriere</span></a>
-          <a class="nav-link" href="#" data-panel="kontakt"><span class="nav-id">07</span><span>Kontakt</span></a>
-        </div>
-
-        <div class="sidebar-box">
-          <div class="mini-panel">
-            <h4>Format</h4>
-            <p>Große One-Page-App mit mehreren internen Ansichten statt kleiner Standard-Seite.</p>
+      <div class="hero-main">
+        <div class="hero-content">
+          <div class="eyebrow">Rambo Netzwerk</div>
+          <h1>Eine Familienseite im Stil eines modernen Server-Netzwerks.</h1>
+          <p>
+            Ich habe die Website jetzt deutlich an den Stil von mixelpixel.net angelehnt: oben eine klare Menüleiste, eine große Startsektion, Server-/Netzwerk-Infos, News-Karten, Statistikbereiche und eine aufgeräumte Gaming-Netzwerk-Optik. Es ist inspiriert davon – aber keine 1:1 Kopie.
+          </p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#" data-panel-link="news">Neuigkeiten ansehen</a>
+            <a class="btn btn-secondary" href="#" data-panel-link="bewerben">Jetzt bewerben</a>
           </div>
-          <div class="mini-panel">
-            <h4>Vorteil</h4>
-            <p>Mehr Inhalt auf engem, sauberen Raum. Dadurch wirkt die Website kompakt, aber gleichzeitig riesig.</p>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div class="server-box">
+          <h3>Netzwerk Adresse</h3>
+          <div class="server-ip">play.rambo-familie.net</div>
+          <div class="online">84 Mitglieder aktiv</div>
+        </div>
+
+        <div class="mini-stats">
+          <div class="mini-card">
+            <span>Auftritt</span>
+            <strong>Premium Network</strong>
+            <small>Großer öffentlicher Auftritt mit starker Wiedererkennung.</small>
+          </div>
+          <div class="mini-card">
+            <span>Leitbild</span>
+            <strong>Loyalität</strong>
+            <small>Interne Ordnung und geschlossene Linie.</small>
+          </div>
+          <div class="mini-card">
+            <span>Recruiting</span>
+            <strong>Aktiv</strong>
+            <small>Neue Bewerbungen und Kontakte möglich.</small>
+          </div>
+          <div class="mini-card">
+            <span>Status</span>
+            <strong>Online</strong>
+            <small>Präsentation und Kontaktbereich verfügbar.</small>
           </div>
         </div>
       </aside>
+    </section>
 
-      <main class="content-shell">
-        <section class="panel active" id="start">
-          <div class="panel-head">
+    <main class="shell">
+      <section class="panel active" id="home">
+        <div class="section-head">
+          <div>
+            <h2>Startseite</h2>
+            <p>Diese Startseite funktioniert wie bei einem Netzwerk-Portal: klare Navigation, starker Hero-Bereich und direkte Einstiege in News, Team, Bewerbung und Kontakt.</p>
+          </div>
+          <div class="tag">HOME</div>
+        </div>
+
+        <div class="feature-banner">
+          <h3>Rambo Familie – modern organisiert, stark präsentiert.</h3>
+          <p>Die Familie wird hier wie ein professionelles Netzwerk dargestellt. Dadurch wirkt die Website größer, hochwertiger und viel näher an einem Gaming-/Community-Portal.</p>
+        </div>
+
+        <div class="cards-3">
+          <div class="card">
+            <h3>Über uns</h3>
+            <p>Ein starkes Netzwerk mit klarer Führung, interner Struktur und hoher Wiedererkennbarkeit nach außen.</p>
+          </div>
+          <div class="card">
+            <h3>Unsere Vision</h3>
+            <p>Ein Name mit Gewicht, ein Auftritt mit Stil und eine Struktur mit klarer Linie und Loyalität.</p>
+          </div>
+          <div class="card">
+            <h3>Was diese Seite kann</h3>
+            <p>News-Ansichten, Statistikblöcke, Teamübersicht, Bewerbungsteil und Kontaktformular in einem großen Portal-Stil.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="news">
+        <div class="section-head">
+          <div>
+            <h2>News</h2>
+            <p>Dieser Bereich ist bewusst wie ein News-Portal aufgebaut – ähnlich zu einer Server-Startseite mit mehreren Beiträgen und Datumskarten.</p>
+          </div>
+          <div class="tag">NEWS</div>
+        </div>
+
+        <div class="news-grid">
+          <article class="news-card">
+            <div class="date-box"><strong>13</strong><span>Feb</span></div>
             <div>
-              <h3>Startseite</h3>
-              <p>Willkommen bei der offiziellen Präsentation der Rambo Familie. Diese Startseite zeigt direkt die Größe, den Anspruch und den professionellen Aufbau des gesamten Netzwerks.</p>
+              <div class="news-meta">Rambo Leitung</div>
+              <h3>Die Familienstruktur wurde erweitert</h3>
+              <p>Die Rambo Familie baut ihre interne Organisation weiter aus. Neue Zuständigkeiten, klarere Abläufe und stärkere Kommunikation sorgen für einen professionelleren Gesamtauftritt.</p>
             </div>
-            <div class="tag">Overview</div>
-          </div>
+          </article>
 
-          <div class="section-block">
-            <div class="section-title"><h4>Kennzahlen</h4></div>
-            <div class="kpi-bar">
-              <div class="kpi"><strong>01</strong><span>Starke Leitungsstruktur mit klaren Entscheidungswegen.</span></div>
-              <div class="kpi"><strong>04</strong><span>Definierte Kernbereiche für interne Ordnung und Außenwirkung.</span></div>
-              <div class="kpi"><strong>24/7</strong><span>Symbol für dauerhafte Präsenz und Einsatzbereitschaft.</span></div>
-              <div class="kpi"><strong>100%</strong><span>Fokus auf Loyalität, Diskretion und gemeinsame Linie.</span></div>
-            </div>
-          </div>
-
-          <div class="section-block">
-            <div class="section-title"><h4>Kurzübersicht</h4></div>
-            <div class="cards-3">
-              <div class="card"><h4>Mission</h4><p>Die Rambo Familie vereint Struktur, Einfluss und Loyalität in einer klar organisierten Gesamtpräsenz.</p></div>
-              <div class="card"><h4>Vision</h4><p>Ein Netzwerk mit starkem Wiedererkennungswert, sauberem Auftreten und interner Kontrolle.</p></div>
-              <div class="card"><h4>Außenwirkung</h4><p>Modern, hochwertig und dominant – wie eine Firma mit klarer Führung.</p></div>
-            </div>
-          </div>
-
-          <div class="section-block">
-            <div class="highlight">
-              Die Rambo Familie wird hier nicht nur vorgestellt, sondern wie ein echtes Corporate Network inszeniert: mit Abteilungen, Verantwortlichkeiten, Leistungsprofil und einer professionellen Kontaktstrecke.
-            </div>
-          </div>
-        </section>
-
-        <section class="panel" id="ueber">
-          <div class="panel-head">
+          <article class="news-card">
+            <div class="date-box"><strong>04</strong><span>Jan</span></div>
             <div>
-              <h3>Über uns</h3>
-              <p>Ein erweiterter Überblick über Identität, Ursprung, Selbstverständnis und den Charakter der Rambo Familie als modernes Kollektiv.</p>
+              <div class="news-meta">Recruiting</div>
+              <h3>Neue Bewerbungsphase gestartet</h3>
+              <p>Interessierte Kontakte können sich jetzt über den Bewerbungsbereich vorstellen. Gesucht werden loyale, aktive und seriöse Persönlichkeiten mit passendem Auftreten.</p>
             </div>
-            <div class="tag">Identity</div>
-          </div>
+          </article>
 
-          <div class="cards">
-            <div class="card"><h4>Profil</h4><p>Eine loyale, strukturierte und professionelle Gemeinschaft mit starkem internen Zusammenhalt und klarer Außendarstellung.</p></div>
-            <div class="card"><h4>Selbstbild</h4><p>Die Familie sieht sich als organisiert, kontrolliert und hochwertig positioniert – kein Chaos, sondern klare Linie.</p></div>
-            <div class="card"><h4>Wirkung</h4><p>Dominanz entsteht durch Auftreten, Ordnung und Verlässlichkeit. Jede Person repräsentiert den Gesamtauftritt.</p></div>
-            <div class="card"><h4>Zielrichtung</h4><p>Langfristige Präsenz, interne Stabilität und ein unverwechselbarer Name mit Stil und Gewicht.</p></div>
-          </div>
-        </section>
-
-        <section class="panel" id="struktur">
-          <div class="panel-head">
+          <article class="news-card">
+            <div class="date-box"><strong>21</strong><span>Mrz</span></div>
             <div>
-              <h3>Struktur</h3>
-              <p>Die Familie ist wie ein Unternehmen aufgebaut: mit Führungsebene, Management, operativer Umsetzung und festen Verantwortungsbereichen.</p>
+              <div class="news-meta">Netzwerk Update</div>
+              <h3>Außenwirkung und Corporate Design überarbeitet</h3>
+              <p>Mit einem neuen Portal-Stil, klaren Menüs und stärkerem Markenbild präsentiert sich die Familie jetzt moderner und hochwertiger.</p>
             </div>
-            <div class="tag">Organisation</div>
-          </div>
+          </article>
 
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-date">Ebene 01</div>
-              <div class="timeline-body"><h4>Direktion</h4><p>Die höchste Ebene verantwortet Ausrichtung, Strategie, Entscheidungen und die Repräsentation nach außen.</p></div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-date">Ebene 02</div>
-              <div class="timeline-body"><h4>Management</h4><p>Koordiniert Abläufe, steuert interne Bereiche, verteilt Zuständigkeiten und sichert die einheitliche Linie.</p></div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-date">Ebene 03</div>
-              <div class="timeline-body"><h4>Operative Einheiten</h4><p>Setzen Aufgaben um, vertreten die Familie im Alltag und sichern Präsenz, Aktivität und Wirkung.</p></div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-date">Ebene 04</div>
-              <div class="timeline-body"><h4>Aufnahme & Entwicklung</h4><p>Neue Mitglieder werden integriert, beobachtet und abhängig von Leistung und Loyalität weiterentwickelt.</p></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="panel" id="bereiche">
-          <div class="panel-head">
+          <article class="news-card">
+            <div class="date-box"><strong>09</strong><span>Apr</span></div>
             <div>
-              <h3>Bereiche</h3>
-              <p>Mehrere definierte Kernbereiche sorgen dafür, dass die Rambo Familie wie ein modernes Netzwerk oder Unternehmen wirkt.</p>
+              <div class="news-meta">Team Bereich</div>
+              <h3>Neue Teamübersicht eingeführt</h3>
+              <p>Führungsrollen, Management und operative Mitglieder werden jetzt übersichtlicher dargestellt, damit Besucher die Struktur besser verstehen können.</p>
             </div>
-            <div class="tag">Departments</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="stats">
+        <div class="section-head">
+          <div>
+            <h2>Stats</h2>
+            <p>Eine Statistikansicht im Stil eines Netzwerk-Portals mit Kennzahlen, Strukturwerten und Leistungsdarstellung.</p>
+          </div>
+          <div class="tag">STATS</div>
+        </div>
+
+        <div class="cards-3" style="margin-bottom:18px;">
+          <div class="card"><h3>Leitung</h3><p>1 zentrale Direktion mit klaren Entscheidungswegen und strategischer Gesamtverantwortung.</p></div>
+          <div class="card"><h3>Management</h3><p>4 definierte Bereiche für Koordination, Ordnung, Kommunikation und Kontrolle.</p></div>
+          <div class="card"><h3>Netzwerk</h3><p>Eine wachsende Struktur mit sichtbarer Außenwirkung und systematischem Recruiting.</p></div>
+        </div>
+
+        <div class="info-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Bereich</th>
+                <th>Beschreibung</th>
+                <th>Ziel</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Direktion</td>
+                <td>Leitet das Netzwerk und trifft übergeordnete Entscheidungen.</td>
+                <td>Kontrolle</td>
+              </tr>
+              <tr>
+                <td>Recruiting</td>
+                <td>Prüft Bewerbungen und wählt passende Kontakte aus.</td>
+                <td>Wachstum</td>
+              </tr>
+              <tr>
+                <td>Kommunikation</td>
+                <td>Sichert klare interne und externe Abstimmung.</td>
+                <td>Einheitlichkeit</td>
+              </tr>
+              <tr>
+                <td>Außenwirkung</td>
+                <td>Stärkt Marke, Auftreten und Wiedererkennbarkeit.</td>
+                <td>Präsenz</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel" id="team">
+        <div class="section-head">
+          <div>
+            <h2>Team</h2>
+            <p>Auch dieser Bereich ist eher wie eine Netzwerk-Seite gedacht: kurze Vorstellung der wichtigsten Ebenen statt einer kleinen Standardliste.</p>
+          </div>
+          <div class="tag">TEAM</div>
+        </div>
+
+        <div class="cards-2">
+          <div class="card">
+            <h3>Direktion</h3>
+            <ul>
+              <li>Gesamtverantwortung und strategische Ausrichtung</li>
+              <li>Außenrepräsentation der Familie</li>
+              <li>Kontrolle über Aufbau, Linie und Entwicklung</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Management</h3>
+            <ul>
+              <li>Organisation interner Abläufe</li>
+              <li>Koordination verschiedener Kernbereiche</li>
+              <li>Betreuung von Struktur und Kommunikation</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Operative Mitglieder</h3>
+            <ul>
+              <li>Vertreten die Familie im Alltag</li>
+              <li>Setzen Aufgaben und Vorgaben um</li>
+              <li>Tragen Wirkung und Präsenz nach außen</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Recruiting</h3>
+            <ul>
+              <li>Prüft neue Bewerber</li>
+              <li>Bewertet Auftreten, Loyalität und Aktivität</li>
+              <li>Unterstützt Aufnahme und Entwicklung</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="bewerben">
+        <div class="section-head">
+          <div>
+            <h2>Bewerben</h2>
+            <p>Inspiriert von einem Bewerbungsbereich auf einer Netzwerk-Seite. Hier kann man Informationen geben und Interesse an einer Aufnahme zeigen.</p>
+          </div>
+          <div class="tag">BEWERBEN</div>
+        </div>
+
+        <div class="feature-banner" style="margin-bottom:22px;">
+          <h3>Wir suchen loyale und seriöse Persönlichkeiten.</h3>
+          <p>Wer sich passend präsentieren kann, aktiv ist und sich an eine klare Struktur halten möchte, kann sich hier für die Rambo Familie vorstellen.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Voraussetzungen</h3>
+            <ul>
+              <li>Respektvolles und kontrolliertes Auftreten</li>
+              <li>Loyalität gegenüber der Struktur</li>
+              <li>Aktivität und Zuverlässigkeit</li>
+              <li>Bereitschaft zur Einordnung in feste Abläufe</li>
+            </ul>
           </div>
 
-          <div class="cards-3">
-            <div class="card"><h4>Leitung</h4><p>Gesamtverantwortung, Führung und strategische Entscheidungen.</p></div>
-            <div class="card"><h4>Recruiting</h4><p>Suche, Auswahl und Prüfung potenzieller Mitglieder und Kontakte.</p></div>
-            <div class="card"><h4>Interne Sicherheit</h4><p>Schutz der Struktur, Ordnung und Stabilität innerhalb des Netzwerks.</p></div>
-            <div class="card"><h4>Kommunikation</h4><p>Interne Abstimmung sowie koordinierte Außendarstellung.</p></div>
-            <div class="card"><h4>Repräsentation</h4><p>Imagepflege, Außenwirkung und öffentliches Auftreten mit Wiedererkennungswert.</p></div>
-            <div class="card"><h4>Entwicklung</h4><p>Aufbau von Leistungsträgern, Förderung und saubere Rangentwicklung.</p></div>
+          <div class="contact-card">
+            <h3>Bewerbungsformular</h3>
+            <form onsubmit="event.preventDefault(); alert('Bewerbung gesendet (Demo). Für echten Versand kann später ein Formular-Dienst angebunden werden.');">
+              <div class="form-row">
+                <label>Vorname / Name<input type="text" placeholder="Dein Name" required></label>
+                <label>Discord<input type="text" placeholder="z. B. User#0001" required></label>
+              </div>
+              <div class="form-row">
+                <label>Alter<input type="text" placeholder="Dein Alter"></label>
+                <label>Erfahrung<input type="text" placeholder="z. B. RP / Leitung / Support"></label>
+              </div>
+              <label>Warum möchtest du zur Rambo Familie?<textarea placeholder="Schreibe hier deine kurze Bewerbung..."></textarea></label>
+              <button class="btn btn-primary" type="submit">Bewerbung absenden</button>
+            </form>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="panel" id="leistungen">
-          <div class="panel-head">
-            <div>
-              <h3>Leistungen</h3>
-              <p>Hier wird die Rambo Familie wie eine Firma mit klaren Kompetenzen und einem hochwertigen Leistungsbild dargestellt.</p>
-            </div>
-            <div class="tag">Services</div>
+      <section class="panel" id="kontakt">
+        <div class="section-head">
+          <div>
+            <h2>Kontakt</h2>
+            <p>Ein Kontaktbereich im gleichen Stil wie der Rest der Netzwerk-Seite. Groß, übersichtlich und mit Formular.</p>
           </div>
+          <div class="tag">KONTAKT</div>
+        </div>
 
-          <div class="section-block">
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bereich</th>
-                    <th>Beschreibung</th>
-                    <th>Ziel</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Strukturmanagement</td>
-                    <td>Klare Rollen, definierte Zuständigkeiten und kontrollierte interne Abläufe.</td>
-                    <td>Stabilität</td>
-                  </tr>
-                  <tr>
-                    <td>Markenwirkung</td>
-                    <td>Einheitliches Auftreten, starker Name und hochwertiges Gesamtbild.</td>
-                    <td>Wiedererkennung</td>
-                  </tr>
-                  <tr>
-                    <td>Mitgliederentwicklung</td>
-                    <td>Gezielte Förderung von Personen mit Loyalität, Disziplin und Potenzial.</td>
-                    <td>Aufstieg</td>
-                  </tr>
-                  <tr>
-                    <td>Kommunikationssystem</td>
-                    <td>Kontrollierte interne Kommunikation und abgestimmte Außendarstellung.</td>
-                    <td>Einheitlichkeit</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Kontaktinformationen</h3>
+            <ul>
+              <li><strong>Discord:</strong> DeinDiscord#0000</li>
+              <li><strong>Ansprechpartner:</strong> Leitung Rambo Familie</li>
+              <li><strong>Status:</strong> Netzwerk aktiv</li>
+              <li><strong>Antwort:</strong> Nach interner Prüfung</li>
+            </ul>
           </div>
 
-          <div class="section-block">
-            <div class="cards">
-              <div class="card"><h4>Premium Auftritt</h4><p>Die Familie kann mit dieser Website wie ein professionelles Unternehmen auftreten und sich klar von Standardgruppen abheben.</p></div>
-              <div class="card"><h4>Klare Kommunikation</h4><p>Alle wichtigen Inhalte sind kompakt gegliedert und trotzdem groß und eindrucksvoll dargestellt.</p></div>
-            </div>
+          <div class="contact-card">
+            <h3>Nachricht senden</h3>
+            <form onsubmit="event.preventDefault(); alert('Nachricht gesendet (Demo).');">
+              <div class="form-row">
+                <label>Name<input type="text" placeholder="Dein Name" required></label>
+                <label>Betreff<input type="text" placeholder="Betreff" required></label>
+              </div>
+              <label>Nachricht<textarea placeholder="Schreibe hier deine Nachricht..."></textarea></label>
+              <button class="btn btn-primary" type="submit">Nachricht senden</button>
+            </form>
           </div>
-        </section>
+        </div>
+      </section>
+    </main>
 
-        <section class="panel" id="werte">
-          <div class="panel-head">
-            <div>
-              <h3>Werte</h3>
-              <p>Die zentralen Prinzipien, auf denen die Familie aufgebaut ist und nach außen wirkt.</p>
-            </div>
-            <div class="tag">Core Values</div>
-          </div>
-
-          <div class="cards">
-            <div class="card"><h4>Loyalität</h4><p>Die Familie steht an erster Stelle. Vertrauen und Zusammenhalt bilden die Grundlage jeder Zusammenarbeit.</p></div>
-            <div class="card"><h4>Disziplin</h4><p>Ordnung, Kontrolle und Verlässlichkeit sind fester Bestandteil des internen Anspruchs.</p></div>
-            <div class="card"><h4>Respekt</h4><p>Ein klares, professionelles Auftreten gegenüber Verbündeten, Kontakten und der Öffentlichkeit.</p></div>
-            <div class="card"><h4>Diskretion</h4><p>Nicht alles wird gezeigt, aber alles ist organisiert. Kontrolle schlägt Lautstärke.</p></div>
-          </div>
-        </section>
-
-        <section class="panel" id="karriere">
-          <div class="panel-head">
-            <div>
-              <h3>Karriere</h3>
-              <p>Ein strukturierter Entwicklungsweg innerhalb der Rambo Familie – vergleichbar mit modernen Karrierepfaden in Unternehmen.</p>
-            </div>
-            <div class="tag">Growth</div>
-          </div>
-
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-date">Phase 01</div>
-              <div class="timeline-body"><h4>Eintritt</h4><p>Erste Prüfung von Loyalität, Auftreten, Verlässlichkeit und Anschlussfähigkeit an die Struktur.</p></div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-date">Phase 02</div>
-              <div class="timeline-body"><h4>Integration</h4><p>Einbindung in interne Abläufe, Kommunikation und erste verantwortungsvolle Aufgaben.</p></div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-date">Phase 03</div>
-              <div class="timeline-body"><h4>Aufstieg</h4><p>Wer Präsenz, Loyalität und sauberes Arbeiten zeigt, kann in höhere Ebenen aufrücken.</p></div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-date">Phase 04</div>
-              <div class="timeline-body"><h4>Führung</h4><p>Führungsrollen bedeuten Verantwortung, Kontrolle, strategisches Denken und Vorbildfunktion.</p></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="panel" id="kontakt">
-          <div class="panel-head">
-            <div>
-              <h3>Kontakt</h3>
-              <p>Eine große Kontaktansicht mit Informationsblock und Formular. Das Formular ist als modernes Frontend umgesetzt und kann später an einen echten Mail- oder Backend-Dienst angeschlossen werden.</p>
-            </div>
-            <div class="tag">Reach Out</div>
-          </div>
-
-          <div class="contact-grid">
-            <div class="contact-card">
-              <h4>Kontaktinformationen</h4>
-              <ul>
-                <li><strong>Discord:</strong> DeinDiscord#0000</li>
-                <li><strong>Ansprechpartner:</strong> Leitung Rambo Familie</li>
-                <li><strong>Status:</strong> Bewerbungen und Anfragen möglich</li>
-                <li><strong>Antwortzeit:</strong> Nach interner Prüfung</li>
-              </ul>
-              <div style="height:14px"></div>
-              <h4>Hinweise</h4>
-              <p>Hier kannst du später echte Kontaktdaten, Discord-Namen, Server-Infos oder Aufnahmebedingungen eintragen. Das Formular rechts wirkt schon professionell und groß.</p>
-            </div>
-
-            <div class="contact-card">
-              <h4>Kontaktformular</h4>
-              <form onsubmit="event.preventDefault(); alert('Formular gesendet (Demo). Für echte Nachrichten kann später ein Backend oder Form-Dienst eingebunden werden.');">
-                <div class="form-row">
-                  <label>
-                    Vorname / Name
-                    <input type="text" placeholder="Dein Name" required>
-                  </label>
-                  <label>
-                    Discord
-                    <input type="text" placeholder="z. B. User#0001" required>
-                  </label>
-                </div>
-
-                <div class="form-row">
-                  <label>
-                    Anfrageart
-                    <select required>
-                      <option value="">Bitte wählen</option>
-                      <option>Bewerbung</option>
-                      <option>Partnerschaft</option>
-                      <option>Kontaktanfrage</option>
-                      <option>Allgemeine Information</option>
-                    </select>
-                  </label>
-                  <label>
-                    Verfügbarkeit
-                    <input type="text" placeholder="z. B. täglich ab 18 Uhr">
-                  </label>
-                </div>
-
-                <label>
-                  Nachricht
-                  <textarea placeholder="Schreibe hier deine Nachricht oder Bewerbung..."></textarea>
-                </label>
-
-                <div class="form-submit">
-                  <button class="btn btn-primary" type="submit">Nachricht senden</button>
-                  <span class="form-note">Dieses Formular ist aktuell eine Demo-Version. Für echten Versand kann es später an Formspree, EmailJS oder ein eigenes Backend angebunden werden.</span>
-                </div>
-              </form>
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
-
-    <div class="footer">Rambo Familie • Corporate Empire Website • Große Premium-Version mit Kontaktformular</div>
+    <div class="footer">Design inspiriert von modernen Minecraft-Netzwerk-Startseiten. Nicht 1:1 übernommen.</div>
   </div>
 
   <script>
