@@ -6,17 +6,18 @@
   <title>Rambo Familie – Netzwerk</title>
   <style>
     :root {
-      --bg: #0b1020;
-      --bg-2: #121a31;
-      --panel: rgba(15, 22, 42, 0.94);
-      --panel-2: rgba(18, 28, 52, 0.98);
+      --bg: #0a1020;
+      --bg-2: #111931;
+      --panel: rgba(14, 21, 41, 0.96);
+      --panel-2: rgba(17, 27, 51, 0.98);
       --line: rgba(255,255,255,0.08);
-      --text: #eef4ff;
-      --muted: #9fb0d3;
-      --accent: #75b9ff;
-      --accent-2: #9b7bff;
-      --success: #6cffc9;
-      --shadow: 0 18px 50px rgba(0,0,0,0.42);
+      --line-strong: rgba(123, 196, 255, 0.18);
+      --text: #edf4ff;
+      --muted: #9aadd0;
+      --accent: #7bc4ff;
+      --accent-2: #9d7aff;
+      --success: #6df7cb;
+      --shadow: 0 22px 60px rgba(0,0,0,0.44);
       --radius: 24px;
     }
 
@@ -26,9 +27,9 @@
       font-family: Inter, Arial, Helvetica, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 15% 10%, rgba(117,185,255,0.15), transparent 22%),
-        radial-gradient(circle at 85% 5%, rgba(155,123,255,0.13), transparent 24%),
-        linear-gradient(135deg, #080d1a 0%, #0d1427 45%, #0a1020 100%);
+        radial-gradient(circle at 10% 8%, rgba(123,196,255,0.18), transparent 18%),
+        radial-gradient(circle at 90% 6%, rgba(157,122,255,0.16), transparent 20%),
+        linear-gradient(180deg, #09101f 0%, #0d1530 50%, #09111f 100%);
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -37,19 +38,31 @@
       content: "";
       position: fixed;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 34px 34px;
-      mask-image: linear-gradient(to bottom, rgba(255,255,255,0.55), rgba(255,255,255,0.05));
       pointer-events: none;
       z-index: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.06));
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 20% 14%, rgba(123,196,255,0.08), transparent 22%),
+        radial-gradient(circle at 82% 12%, rgba(157,122,255,0.08), transparent 20%),
+        radial-gradient(circle at 50% 100%, rgba(109,247,203,0.04), transparent 25%);
     }
 
     .page {
-      width: min(1440px, calc(100% - 24px));
+      width: min(1440px, calc(100% - 22px));
       margin: 0 auto;
-      padding: 16px 0 34px;
+      padding: 14px 0 28px;
       position: relative;
       z-index: 1;
     }
@@ -62,11 +75,14 @@
       padding: 14px 18px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(10, 17, 32, 0.82);
-      backdrop-filter: blur(14px);
+      background: rgba(9, 15, 29, 0.84);
+      backdrop-filter: blur(16px);
       box-shadow: var(--shadow);
       margin-bottom: 18px;
       flex-wrap: wrap;
+      position: sticky;
+      top: 10px;
+      z-index: 10;
     }
 
     .brand {
@@ -83,8 +99,24 @@
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 12px 28px rgba(117,185,255,0.22);
+      box-shadow: 0 14px 30px rgba(123,196,255,0.24);
       font-size: 1.1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.25), transparent 40%);
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: .88rem;
+      font-weight: 600;
     }
 
     .nav-links {
@@ -99,38 +131,63 @@
       padding: 11px 14px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.06);
-      background: rgba(255,255,255,0.03);
-      font-size: 0.92rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+      font-size: .92rem;
       font-weight: 700;
-      transition: .2s ease;
+      transition: .22s ease;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
+
+    .nav-link::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(123,196,255,0.14), rgba(157,122,255,0.12));
+      opacity: 0;
+      transition: .22s ease;
+    }
+
+    .nav-link span { position: relative; z-index: 1; }
 
     .nav-link:hover,
     .nav-link.active {
-      background: linear-gradient(135deg, rgba(117,185,255,0.14), rgba(155,123,255,0.14));
-      border-color: rgba(117,185,255,0.24);
+      border-color: rgba(123,196,255,0.26);
       transform: translateY(-1px);
+      box-shadow: inset 0 0 0 1px rgba(123,196,255,0.06);
+    }
+
+    .nav-link:hover::before,
+    .nav-link.active::before {
+      opacity: 1;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 18px;
       margin-bottom: 18px;
+      transition: .25s ease;
+    }
+
+    .hero.hidden {
+      display: none;
     }
 
     .hero-main,
     .hero-side {
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(16, 25, 46, 0.96), rgba(11, 18, 33, 0.98));
       box-shadow: var(--shadow);
       overflow: hidden;
     }
 
     .hero-main {
-      min-height: 420px;
+      background:
+        linear-gradient(180deg, rgba(13, 21, 41, 0.96), rgba(11, 18, 34, 0.98)),
+        linear-gradient(135deg, rgba(123,196,255,0.10), transparent 30%, rgba(157,122,255,0.10));
+      min-height: 430px;
       position: relative;
     }
 
@@ -139,8 +196,17 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(135deg, rgba(117,185,255,0.18), transparent 30%),
-        linear-gradient(300deg, rgba(155,123,255,0.16), transparent 35%);
+        radial-gradient(circle at 16% 18%, rgba(123,196,255,0.18), transparent 18%),
+        radial-gradient(circle at 84% 16%, rgba(157,122,255,0.16), transparent 18%);
+      pointer-events: none;
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
       pointer-events: none;
     }
 
@@ -148,18 +214,18 @@
       position: relative;
       z-index: 1;
       padding: 36px 32px;
+      min-height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      min-height: 100%;
       gap: 18px;
     }
 
     .eyebrow {
       color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: .2em;
-      font-size: .82rem;
+      letter-spacing: .22em;
+      font-size: .8rem;
       font-weight: 800;
     }
 
@@ -168,11 +234,12 @@
       line-height: .92;
       letter-spacing: -0.05em;
       max-width: 760px;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.25);
     }
 
     .hero-content p {
       color: var(--muted);
-      line-height: 1.85;
+      line-height: 1.84;
       max-width: 760px;
       font-size: 1.04rem;
     }
@@ -190,18 +257,20 @@
       border-radius: 14px;
       font-weight: 800;
       border: 1px solid transparent;
-      transition: .2s ease;
+      transition: .22s ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
     .btn:hover { transform: translateY(-2px); }
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: white;
-      box-shadow: 0 16px 32px rgba(117,185,255,0.22);
+      box-shadow: 0 16px 34px rgba(123,196,255,0.22);
     }
     .btn-secondary {
       background: rgba(255,255,255,0.04);
@@ -210,21 +279,54 @@
     }
 
     .hero-side {
+      background: linear-gradient(180deg, rgba(14, 22, 41, 0.98), rgba(11, 18, 34, 0.99));
       padding: 22px;
       display: grid;
       gap: 14px;
       align-content: start;
+      position: relative;
     }
 
-    .server-box {
+    .hero-side::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+
+    .server-box,
+    .mini-card {
       border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
       border-radius: 20px;
-      padding: 18px;
+      position: relative;
+      overflow: hidden;
     }
 
+    .server-box::before,
+    .mini-card::before,
+    .card::before,
+    .news-card::before,
+    .contact-card::before,
+    .feature-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(123,196,255,0.08), transparent 35%, rgba(157,122,255,0.08));
+      opacity: .7;
+      pointer-events: none;
+    }
+
+    .server-box > *, .mini-card > *, .card > *, .news-card > *, .contact-card > *, .feature-banner > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .server-box { padding: 18px; }
     .server-box h3 {
-      font-size: 0.86rem;
+      font-size: .84rem;
       color: var(--muted);
       letter-spacing: .16em;
       text-transform: uppercase;
@@ -252,7 +354,7 @@
       height: 10px;
       border-radius: 50%;
       background: var(--success);
-      box-shadow: 0 0 0 6px rgba(108,255,201,0.12);
+      box-shadow: 0 0 0 6px rgba(109,247,203,0.12);
     }
 
     .mini-stats {
@@ -262,9 +364,6 @@
     }
 
     .mini-card {
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
       padding: 18px;
       min-height: 120px;
     }
@@ -293,21 +392,34 @@
     .shell {
       border: 1px solid var(--line);
       border-radius: 28px;
-      background: linear-gradient(180deg, rgba(15,24,40,0.98), rgba(10,17,29,0.99));
+      background: linear-gradient(180deg, rgba(14, 22, 41, 0.98), rgba(10, 17, 31, 0.995));
       box-shadow: var(--shadow);
       overflow: hidden;
+      position: relative;
+    }
+
+    .shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 12%, rgba(123,196,255,0.05), transparent 18%),
+        radial-gradient(circle at 85% 10%, rgba(157,122,255,0.05), transparent 18%);
+      pointer-events: none;
     }
 
     .panel {
       display: none;
       padding: 28px;
-      animation: fade .35s ease;
+      animation: fade .28s ease;
+      position: relative;
+      z-index: 1;
     }
 
     .panel.active { display: block; }
 
     @keyframes fade {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(14px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -337,52 +449,62 @@
       padding: 10px 14px;
       border-radius: 999px;
       color: var(--accent);
-      border: 1px solid rgba(117,185,255,0.22);
-      background: rgba(117,185,255,0.08);
+      border: 1px solid rgba(123,196,255,0.22);
+      background: rgba(123,196,255,0.08);
       font-size: .84rem;
       font-weight: 700;
+      box-shadow: inset 0 0 0 1px rgba(123,196,255,0.04);
     }
 
     .cards-2,
-    .cards-3 {
+    .cards-3,
+    .news-grid {
       display: grid;
       gap: 16px;
     }
 
     .cards-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .cards-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 
     .card,
-    .news-card {
+    .news-card,
+    .contact-card,
+    .feature-banner {
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 22px;
-      background: rgba(255,255,255,0.03);
-      padding: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.025));
+      position: relative;
+      overflow: hidden;
     }
 
+    .card,
+    .contact-card,
+    .feature-banner { padding: 20px; }
+
     .card h3,
-    .news-card h3 {
+    .news-card h3,
+    .contact-card h3,
+    .feature-banner h3 {
       font-size: 1.15rem;
       margin-bottom: 10px;
     }
 
     .card p,
     .card li,
-    .news-card p {
+    .news-card p,
+    .contact-card p,
+    .contact-card li,
+    .feature-banner p {
       color: var(--muted);
       line-height: 1.82;
     }
 
-    .card ul {
+    .card ul,
+    .contact-card ul {
       padding-left: 18px;
       display: grid;
       gap: 8px;
-    }
-
-    .news-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
     }
 
     .news-card {
@@ -391,14 +513,16 @@
       gap: 18px;
       align-items: start;
       min-height: 230px;
+      padding: 20px;
     }
 
     .date-box {
       border-radius: 18px;
-      border: 1px solid rgba(117,185,255,0.22);
-      background: rgba(117,185,255,0.08);
+      border: 1px solid rgba(123,196,255,0.22);
+      background: linear-gradient(180deg, rgba(123,196,255,0.12), rgba(123,196,255,0.06));
       padding: 14px 10px;
       text-align: center;
+      box-shadow: inset 0 0 0 1px rgba(123,196,255,0.05);
     }
 
     .date-box strong {
@@ -426,28 +550,19 @@
     }
 
     .feature-banner {
-      border: 1px solid rgba(117,185,255,0.22);
-      border-radius: 24px;
-      background: linear-gradient(135deg, rgba(117,185,255,0.10), rgba(155,123,255,0.10));
-      padding: 24px;
       margin-bottom: 18px;
+      box-shadow: inset 0 0 0 1px rgba(123,196,255,0.04);
     }
 
     .feature-banner h3 {
       font-size: 1.35rem;
-      margin-bottom: 10px;
-    }
-
-    .feature-banner p {
-      color: var(--muted);
-      line-height: 1.82;
-      max-width: 900px;
     }
 
     .info-table {
       overflow: auto;
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 22px;
+      box-shadow: inset 0 0 0 1px rgba(123,196,255,0.03);
     }
 
     table {
@@ -476,31 +591,8 @@
 
     .contact-grid {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
+      grid-template-columns: .9fr 1.1fr;
       gap: 18px;
-    }
-
-    .contact-card {
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 22px;
-      background: rgba(255,255,255,0.03);
-      padding: 22px;
-    }
-
-    .contact-card h3 {
-      margin-bottom: 12px;
-    }
-
-    .contact-card p,
-    .contact-card li {
-      color: var(--muted);
-      line-height: 1.82;
-    }
-
-    .contact-card ul {
-      padding-left: 18px;
-      display: grid;
-      gap: 8px;
     }
 
     form {
@@ -526,15 +618,16 @@
       padding: 14px 15px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(7, 14, 24, 0.9);
+      background: rgba(7, 13, 24, 0.95);
       color: var(--text);
       outline: none;
       font: inherit;
+      box-shadow: inset 0 0 0 1px rgba(123,196,255,0.02);
     }
 
     input:focus, textarea:focus, select:focus {
-      border-color: rgba(117,185,255,0.35);
-      box-shadow: 0 0 0 4px rgba(117,185,255,0.08);
+      border-color: rgba(123,196,255,0.35);
+      box-shadow: 0 0 0 4px rgba(123,196,255,0.08);
     }
 
     textarea { min-height: 170px; resize: vertical; }
@@ -561,13 +654,14 @@
     }
 
     @media (max-width: 720px) {
-      .page { width: min(100% - 14px, 1440px); }
+      .page { width: min(100% - 12px, 1440px); }
       .panel,
       .hero-content,
       .hero-side { padding: 18px; }
       .section-head { flex-direction: column; }
       .hero-buttons { flex-direction: column; }
       .btn { width: 100%; }
+      .top-nav { border-radius: 22px; }
     }
   </style>
 </head>
@@ -578,27 +672,27 @@
         <div class="logo">R</div>
         <div>
           <div style="font-size:1.05rem;">Rambo Familie</div>
-          <div style="color: var(--muted); font-size: 0.9rem;">Netzwerk Startseite</div>
+          <small>Netzwerk Startseite</small>
         </div>
       </div>
 
       <nav class="nav-links">
-        <a class="nav-link active" href="#" data-panel="home">HOME</a>
-        <a class="nav-link" href="#" data-panel="news">NEWS</a>
-        <a class="nav-link" href="#" data-panel="stats">STATS</a>
-        <a class="nav-link" href="#" data-panel="team">TEAM</a>
-        <a class="nav-link" href="#" data-panel="bewerben">BEWERBEN</a>
-        <a class="nav-link" href="#" data-panel="kontakt">KONTAKT</a>
+        <a class="nav-link active" href="#" data-panel="home"><span>HOME</span></a>
+        <a class="nav-link" href="#" data-panel="news"><span>NEWS</span></a>
+        <a class="nav-link" href="#" data-panel="stats"><span>STATS</span></a>
+        <a class="nav-link" href="#" data-panel="team"><span>TEAM</span></a>
+        <a class="nav-link" href="#" data-panel="bewerben"><span>BEWERBEN</span></a>
+        <a class="nav-link" href="#" data-panel="kontakt"><span>KONTAKT</span></a>
       </nav>
     </header>
 
-    <section class="hero">
+    <section class="hero" id="heroSection">
       <div class="hero-main">
         <div class="hero-content">
           <div class="eyebrow">Rambo Netzwerk</div>
-          <h1>Eine Familienseite im Stil eines modernen Server-Netzwerks.</h1>
+          <h1>Eine Familienseite mit mehr Stil, mehr Deko und echter Netzwerk-Optik.</h1>
           <p>
-            Ich habe die Website jetzt deutlich an den Stil von mixelpixel.net angelehnt: oben eine klare Menüleiste, eine große Startsektion, Server-/Netzwerk-Infos, News-Karten, Statistikbereiche und eine aufgeräumte Gaming-Netzwerk-Optik. Es ist inspiriert davon – aber keine 1:1 Kopie.
+            Ich habe die Dekoration jetzt deutlich stärker in die Richtung moderner Minecraft-Netzwerk-Seiten verschoben: mehr Layer, Lichtflächen, Rahmen, Glows, strukturierte Panels und eine hochwertigere Hero-Darstellung.
           </p>
           <div class="hero-buttons">
             <a class="btn btn-primary" href="#" data-panel-link="news">Neuigkeiten ansehen</a>
@@ -618,22 +712,22 @@
           <div class="mini-card">
             <span>Auftritt</span>
             <strong>Premium Network</strong>
-            <small>Großer öffentlicher Auftritt mit starker Wiedererkennung.</small>
+            <small>Mehr Struktur, mehr Glanz und mehr Tiefe im Design.</small>
           </div>
           <div class="mini-card">
             <span>Leitbild</span>
             <strong>Loyalität</strong>
-            <small>Interne Ordnung und geschlossene Linie.</small>
+            <small>Ordnung, Geschlossenheit und starke Linie.</small>
           </div>
           <div class="mini-card">
             <span>Recruiting</span>
             <strong>Aktiv</strong>
-            <small>Neue Bewerbungen und Kontakte möglich.</small>
+            <small>Bewerbungen und Anfragen sind geöffnet.</small>
           </div>
           <div class="mini-card">
             <span>Status</span>
             <strong>Online</strong>
-            <small>Präsentation und Kontaktbereich verfügbar.</small>
+            <small>Portal und Kontaktwege sind verfügbar.</small>
           </div>
         </div>
       </aside>
@@ -644,28 +738,28 @@
         <div class="section-head">
           <div>
             <h2>Startseite</h2>
-            <p>Diese Startseite funktioniert wie bei einem Netzwerk-Portal: klare Navigation, starker Hero-Bereich und direkte Einstiege in News, Team, Bewerbung und Kontakt.</p>
+            <p>Die Startseite wird nur angezeigt, wenn wirklich HOME ausgewählt ist. Bei allen anderen Kategorien verschwindet der große Home-Screen jetzt komplett.</p>
           </div>
           <div class="tag">HOME</div>
         </div>
 
         <div class="feature-banner">
           <h3>Rambo Familie – modern organisiert, stark präsentiert.</h3>
-          <p>Die Familie wird hier wie ein professionelles Netzwerk dargestellt. Dadurch wirkt die Website größer, hochwertiger und viel näher an einem Gaming-/Community-Portal.</p>
+          <p>Die Startseite bleibt jetzt nicht mehr dauerhaft sichtbar. Sobald du eine andere Kategorie anklickst, siehst du nur noch genau diesen Bereich.</p>
         </div>
 
         <div class="cards-3">
           <div class="card">
-            <h3>Über uns</h3>
-            <p>Ein starkes Netzwerk mit klarer Führung, interner Struktur und hoher Wiedererkennbarkeit nach außen.</p>
+            <h3>Überblick</h3>
+            <p>Ein starker Einstieg mit echter Netzwerk-Optik, klaren Panels und hochwertigerer Deko.</p>
           </div>
           <div class="card">
-            <h3>Unsere Vision</h3>
-            <p>Ein Name mit Gewicht, ein Auftritt mit Stil und eine Struktur mit klarer Linie und Loyalität.</p>
+            <h3>Navigation</h3>
+            <p>Jeder Klick öffnet gezielt nur die passende Kategorie, ohne dass die Home-Sektion dazwischensteht.</p>
           </div>
           <div class="card">
-            <h3>Was diese Seite kann</h3>
-            <p>News-Ansichten, Statistikblöcke, Teamübersicht, Bewerbungsteil und Kontaktformular in einem großen Portal-Stil.</p>
+            <h3>Wirkung</h3>
+            <p>Die Seite wirkt jetzt deutlich weniger leer und mehr wie ein richtiges großes Gaming-Portal.</p>
           </div>
         </div>
       </section>
@@ -674,7 +768,7 @@
         <div class="section-head">
           <div>
             <h2>News</h2>
-            <p>Dieser Bereich ist bewusst wie ein News-Portal aufgebaut – ähnlich zu einer Server-Startseite mit mehreren Beiträgen und Datumskarten.</p>
+            <p>Mehr Deko, stärkere Datumsboxen und ein klarerer Portal-Look für Neuigkeiten.</p>
           </div>
           <div class="tag">NEWS</div>
         </div>
@@ -685,7 +779,7 @@
             <div>
               <div class="news-meta">Rambo Leitung</div>
               <h3>Die Familienstruktur wurde erweitert</h3>
-              <p>Die Rambo Familie baut ihre interne Organisation weiter aus. Neue Zuständigkeiten, klarere Abläufe und stärkere Kommunikation sorgen für einen professionelleren Gesamtauftritt.</p>
+              <p>Neue Zuständigkeiten, stärkere Kommunikation und ein klarerer interner Aufbau sorgen für mehr Kontrolle und bessere Außenwirkung.</p>
             </div>
           </article>
 
@@ -694,7 +788,7 @@
             <div>
               <div class="news-meta">Recruiting</div>
               <h3>Neue Bewerbungsphase gestartet</h3>
-              <p>Interessierte Kontakte können sich jetzt über den Bewerbungsbereich vorstellen. Gesucht werden loyale, aktive und seriöse Persönlichkeiten mit passendem Auftreten.</p>
+              <p>Gesucht werden loyale, aktive und seriöse Persönlichkeiten mit stabilem Auftreten und Verständnis für klare Struktur.</p>
             </div>
           </article>
 
@@ -702,8 +796,8 @@
             <div class="date-box"><strong>21</strong><span>Mrz</span></div>
             <div>
               <div class="news-meta">Netzwerk Update</div>
-              <h3>Außenwirkung und Corporate Design überarbeitet</h3>
-              <p>Mit einem neuen Portal-Stil, klaren Menüs und stärkerem Markenbild präsentiert sich die Familie jetzt moderner und hochwertiger.</p>
+              <h3>Portal-Design weiter ausgebaut</h3>
+              <p>Mehr Layer, bessere Panels, weichere Lichtflächen und ein stärkeres Gesamtbild sorgen für eine hochwertigere Wirkung.</p>
             </div>
           </article>
 
@@ -712,7 +806,7 @@
             <div>
               <div class="news-meta">Team Bereich</div>
               <h3>Neue Teamübersicht eingeführt</h3>
-              <p>Führungsrollen, Management und operative Mitglieder werden jetzt übersichtlicher dargestellt, damit Besucher die Struktur besser verstehen können.</p>
+              <p>Führungsrollen, Management und operative Strukturen werden jetzt kompakter und klarer dargestellt.</p>
             </div>
           </article>
         </div>
@@ -722,7 +816,7 @@
         <div class="section-head">
           <div>
             <h2>Stats</h2>
-            <p>Eine Statistikansicht im Stil eines Netzwerk-Portals mit Kennzahlen, Strukturwerten und Leistungsdarstellung.</p>
+            <p>Statistikansicht mit klaren Blöcken und strukturierter Tabellenoptik.</p>
           </div>
           <div class="tag">STATS</div>
         </div>
@@ -772,7 +866,7 @@
         <div class="section-head">
           <div>
             <h2>Team</h2>
-            <p>Auch dieser Bereich ist eher wie eine Netzwerk-Seite gedacht: kurze Vorstellung der wichtigsten Ebenen statt einer kleinen Standardliste.</p>
+            <p>Klare Teamdarstellung mit stärkerem Kartenstil und besserer visueller Führung.</p>
           </div>
           <div class="tag">TEAM</div>
         </div>
@@ -817,7 +911,7 @@
         <div class="section-head">
           <div>
             <h2>Bewerben</h2>
-            <p>Inspiriert von einem Bewerbungsbereich auf einer Netzwerk-Seite. Hier kann man Informationen geben und Interesse an einer Aufnahme zeigen.</p>
+            <p>Großer Bewerbungsbereich im Netzwerk-Stil mit Info-Block und Formular.</p>
           </div>
           <div class="tag">BEWERBEN</div>
         </div>
@@ -860,7 +954,7 @@
         <div class="section-head">
           <div>
             <h2>Kontakt</h2>
-            <p>Ein Kontaktbereich im gleichen Stil wie der Rest der Netzwerk-Seite. Groß, übersichtlich und mit Formular.</p>
+            <p>Kontaktbereich im gleichen Stil wie die übrigen Panels – groß, klar und hochwertiger dekoriert.</p>
           </div>
           <div class="tag">KONTAKT</div>
         </div>
@@ -898,10 +992,18 @@
     const navLinks = document.querySelectorAll('[data-panel]');
     const panelButtons = document.querySelectorAll('[data-panel-link]');
     const panels = document.querySelectorAll('.panel');
+    const hero = document.getElementById('heroSection');
 
     function openPanel(id) {
       panels.forEach(panel => panel.classList.toggle('active', panel.id === id));
       navLinks.forEach(link => link.classList.toggle('active', link.dataset.panel === id));
+
+      if (id === 'home') {
+        hero.classList.remove('hidden');
+      } else {
+        hero.classList.add('hidden');
+      }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
