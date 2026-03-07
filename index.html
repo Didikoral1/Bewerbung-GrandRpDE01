@@ -6,17 +6,16 @@
   <title>Grand RP DE01 – Admin Bewerbung</title>
   <style>
     :root {
-      --bg: #0c0c0c;
-      --bg-soft: #161616;
-      --panel: #1d1d1d;
+      --bg: #0d0d0d;
+      --bg-soft: #171717;
+      --panel: #1f1f1f;
       --panel-2: #262626;
-      --line: #3a3a3a;
-      --text: #f2e7d5;
-      --muted: #c4b7a0;
+      --line: #3b3b3b;
+      --text: #f1e6d3;
+      --muted: #c7b79d;
       --accent: #d4a25a;
-      --accent-dark: #8b5e2b;
-      --glow: rgba(212, 162, 90, 0.18);
-      --shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      --accent-dark: #8f6030;
+      --shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
     }
 
     * {
@@ -25,14 +24,14 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html, body {
+      min-height: 100%;
     }
 
     body {
       font-family: Georgia, "Times New Roman", serif;
       background:
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+        linear-gradient(rgba(0,0,0,0.58), rgba(0,0,0,0.82)),
         repeating-linear-gradient(
           0deg,
           rgba(255,255,255,0.015) 0px,
@@ -40,11 +39,10 @@
           transparent 1px,
           transparent 3px
         ),
-        radial-gradient(circle at top left, rgba(212,162,90,0.08), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(139,94,43,0.12), transparent 28%),
-        #0c0c0c;
+        radial-gradient(circle at top left, rgba(212,162,90,0.07), transparent 26%),
+        radial-gradient(circle at bottom right, rgba(143,96,48,0.11), transparent 28%),
+        #0d0d0d;
       color: var(--text);
-      min-height: 100vh;
       overflow-x: hidden;
       letter-spacing: 0.2px;
     }
@@ -83,6 +81,7 @@
       border-radius: 8px;
       overflow: hidden;
       animation: fadeUp .7s ease forwards;
+      margin-bottom: 18px;
     }
 
     .hero-top {
@@ -117,7 +116,7 @@
     }
 
     .brand h1 {
-      font-size: clamp(2rem, 4vw, 4rem);
+      font-size: clamp(1.8rem, 4vw, 3.7rem);
       line-height: 1;
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -144,106 +143,10 @@
       white-space: nowrap;
     }
 
-    .hero-content {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 20px;
-      padding: 28px 22px;
-    }
-
-    .intro {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      justify-content: center;
-    }
-
-    .kicker {
-      color: var(--accent);
-      text-transform: uppercase;
-      font-size: 0.82rem;
-      letter-spacing: 2.6px;
-    }
-
-    .intro h2 {
-      font-size: clamp(1.8rem, 3.5vw, 3.1rem);
-      font-weight: 700;
-      line-height: 1.1;
-    }
-
-    .intro p {
-      color: var(--muted);
-      line-height: 1.8;
-      max-width: 700px;
-      font-size: 1rem;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 4px;
-    }
-
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-      padding: 12px 16px;
-      border: 1px solid var(--accent-dark);
-      transition: .2s ease;
-      text-transform: uppercase;
-      letter-spacing: 1.4px;
-      font-size: 0.86rem;
-    }
-
-    .btn-primary {
-      background: linear-gradient(180deg, #d4a25a, #9b6a33);
-      color: #140f0a;
-      font-weight: 700;
-      box-shadow: 0 0 20px var(--glow);
-    }
-
-    .btn-secondary {
-      background: linear-gradient(180deg, #2a2118, #1a1510);
-      color: #f1dcc0;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.04);
-    }
-
-    .hero-side {
-      display: grid;
-      gap: 12px;
-    }
-
-    .stat-box {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, #232323, #191919);
-      padding: 16px;
-      box-shadow: inset 0 0 18px rgba(255,255,255,0.02);
-    }
-
-    .stat-box span {
-      display: block;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1.4px;
-      font-size: 0.82rem;
-      margin-bottom: 8px;
-    }
-
-    .stat-box strong {
-      font-size: 1.12rem;
-      color: #f7ead3;
-    }
-
     .layout {
       display: grid;
       grid-template-columns: 270px 1fr;
       gap: 18px;
-      margin-top: 18px;
     }
 
     .sidebar {
@@ -282,6 +185,7 @@
       background: linear-gradient(180deg, #252525, #1b1b1b);
       padding: 12px;
       transition: .2s ease;
+      cursor: pointer;
     }
 
     .nav-link:hover,
@@ -302,6 +206,7 @@
       background: #18120d;
       font-size: 0.82rem;
       font-weight: 700;
+      flex-shrink: 0;
     }
 
     .sidebar-note {
@@ -313,56 +218,50 @@
       font-size: 0.94rem;
     }
 
-    .content {
-      display: grid;
-      gap: 18px;
-    }
-
-    .section-card {
+    .content-shell {
       border: 1px solid var(--line);
       background: linear-gradient(180deg, #1e1e1e, #171717);
       box-shadow: var(--shadow);
-      padding: 22px;
-      animation: fadeUp 1s ease forwards;
+      min-height: 720px;
       position: relative;
       overflow: hidden;
+      animation: fadeUp 1s ease forwards;
     }
 
-    .section-card::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(180deg, var(--accent), var(--accent-dark));
-      opacity: 0.9;
+    .panel {
+      display: none;
+      padding: 24px;
+      animation: fadeUp .35s ease;
     }
 
-    .section-head {
+    .panel.active {
+      display: block;
+    }
+
+    .panel-head {
       display: flex;
       justify-content: space-between;
       gap: 14px;
       align-items: flex-start;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       border-bottom: 1px solid var(--line);
       padding-bottom: 14px;
     }
 
-    .section-head h2 {
-      font-size: clamp(1.3rem, 2vw, 2rem);
+    .panel-head h2 {
+      font-size: clamp(1.35rem, 2vw, 2rem);
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 8px;
     }
 
-    .section-head p {
+    .panel-head p {
       color: var(--muted);
-      line-height: 1.7;
-      max-width: 720px;
+      line-height: 1.75;
+      max-width: 760px;
     }
 
-    .section-tag {
+    .panel-tag {
       border: 1px solid var(--accent-dark);
       background: #18120d;
       color: var(--accent);
@@ -462,6 +361,30 @@
       box-shadow: inset 0 0 28px rgba(212,162,90,0.08);
     }
 
+    .welcome {
+      display: grid;
+      gap: 16px;
+    }
+
+    .welcome-box {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #252525, #1b1b1b);
+      padding: 18px;
+    }
+
+    .welcome-box h3 {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .welcome-box p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
     .footer {
       text-align: center;
       color: var(--muted);
@@ -470,19 +393,7 @@
       letter-spacing: 0.6px;
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity .55s ease, transform .55s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     @media (max-width: 980px) {
-      .hero-content,
       .layout {
         grid-template-columns: 1fr;
       }
@@ -498,8 +409,8 @@
         width: min(100% - 16px, 1180px);
       }
 
-      .hero-content,
-      .section-card,
+      .content-shell,
+      .panel,
       .hero-top {
         padding-left: 16px;
         padding-right: 16px;
@@ -510,13 +421,8 @@
         grid-template-columns: 1fr;
       }
 
-      .actions {
+      .panel-head {
         flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-        text-align: center;
       }
     }
   </style>
@@ -529,71 +435,65 @@
           <div class="logo">AR</div>
           <div>
             <h1>Admin Bewerbung</h1>
-            <p>Grand RP DE01 • modern mit old school Charakter</p>
+            <p>Grand RP DE01 • Kategorien mit eigener Seite</p>
           </div>
         </div>
         <div class="status">Bewerbung aktiv</div>
       </div>
-
-      <div class="hero-content">
-        <div class="intro">
-          <div class="kicker">Grand RP Portfolio</div>
-          <h2>Klassisch, stilvoll und trotzdem modern aufgebaut.</h2>
-          <p>
-            Diese Bewerbungsseite verbindet ein modernes Layout mit einem old school Stil.
-            Dunkle Töne, goldene Akzente, klare Kategorien und dezente Animationen sorgen für
-            einen seriösen und markanten Auftritt. Über die linke Navigation gelangt man direkt
-            zu OOC Infos, IC Infos, Karriere und weiteren Bereichen.
-          </p>
-          <div class="actions">
-            <a class="btn btn-primary" href="#ooc">OOC Infos</a>
-            <a class="btn btn-secondary" href="#ic">IC Infos</a>
-          </div>
-        </div>
-
-        <aside class="hero-side">
-          <div class="stat-box">
-            <span>Bewerbung für</span>
-            <strong>Administrator</strong>
-          </div>
-          <div class="stat-box">
-            <span>Server</span>
-            <strong>Grand RP DE01</strong>
-          </div>
-          <div class="stat-box">
-            <span>Stil</span>
-            <strong>Modern / Old School</strong>
-          </div>
-        </aside>
-      </div>
     </header>
 
     <div class="layout">
-      <nav class="sidebar reveal">
+      <nav class="sidebar">
         <h3>Kategorien</h3>
         <div class="nav-list">
-          <a class="nav-link active" href="#ooc"><span class="nav-index">01</span><span>OOC Infos</span></a>
-          <a class="nav-link" href="#ic"><span class="nav-index">02</span><span>IC Infos</span></a>
-          <a class="nav-link" href="#karriere"><span class="nav-index">03</span><span>Karriere</span></a>
-          <a class="nav-link" href="#staerken"><span class="nav-index">04</span><span>Stärken</span></a>
-          <a class="nav-link" href="#erfahrung"><span class="nav-index">05</span><span>Erfahrung</span></a>
-          <a class="nav-link" href="#motivation"><span class="nav-index">06</span><span>Motivation</span></a>
-          <a class="nav-link" href="#kontakt"><span class="nav-index">07</span><span>Kontakt</span></a>
+          <a class="nav-link active" data-panel="start"><span class="nav-index">00</span><span>Startseite</span></a>
+          <a class="nav-link" data-panel="ooc"><span class="nav-index">01</span><span>OOC Infos</span></a>
+          <a class="nav-link" data-panel="ic"><span class="nav-index">02</span><span>IC Infos</span></a>
+          <a class="nav-link" data-panel="karriere"><span class="nav-index">03</span><span>Karriere</span></a>
+          <a class="nav-link" data-panel="staerken"><span class="nav-index">04</span><span>Stärken</span></a>
+          <a class="nav-link" data-panel="erfahrung"><span class="nav-index">05</span><span>Erfahrung</span></a>
+          <a class="nav-link" data-panel="motivation"><span class="nav-index">06</span><span>Motivation</span></a>
+          <a class="nav-link" data-panel="kontakt"><span class="nav-index">07</span><span>Kontakt</span></a>
         </div>
         <div class="sidebar-note">
-          Das Design ist bewusst klassischer gehalten: wie ein altes Aktenblatt oder ein edles
-          Admin-Dossier, aber technisch modern umgesetzt.
+          Jetzt ist es nicht mehr alles untereinander. Jeder Menüpunkt öffnet rechts eine eigene Ansicht,
+          fast wie eine extra Seite innerhalb der Bewerbung.
         </div>
       </nav>
 
-      <main class="content">
-        <section class="section-card reveal" id="ooc">
-          <div class="section-head">
+      <main class="content-shell">
+        <section class="panel active" id="start">
+          <div class="panel-head">
+            <div>
+              <h2>Startseite</h2>
+              <p>Willkommen auf meiner Administrator-Bewerbung für Grand RP DE01. Über die linke Navigation öffnen Sie einzelne Bereiche wie OOC Infos, IC Infos oder Karriere jeweils als eigene Seite innerhalb dieser Bewerbung.</p>
+            </div>
+            <div class="panel-tag">Übersicht</div>
+          </div>
+
+          <div class="welcome">
+            <div class="welcome-box">
+              <h3>Modern trifft old school</h3>
+              <p>Das Design ist bewusst klassisch gehalten, aber technisch modern aufgebaut. Dadurch wirkt die Bewerbung seriös, markant und übersichtlich.</p>
+            </div>
+            <div class="welcome-box">
+              <h3>Eigene Ansichten</h3>
+              <p>Wenn links auf einen Bereich geklickt wird, erscheint rechts direkt die passende Seite. So fühlt sich jede Kategorie wie ein eigener Abschnitt an und nicht wie eine lange Scroll-Seite.</p>
+            </div>
+            <div class="welcome-box">
+              <h3>Schneller Zugriff</h3>
+              <p>Nutzen Sie links die Kategorien, um direkt zu den gewünschten Informationen zu springen.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="ooc">
+          <div class="panel-head">
             <div>
               <h2>OOC Informationen</h2>
               <p>Persönliche Angaben außerhalb des Roleplays – klar, strukturiert und übersichtlich dargestellt.</p>
             </div>
-            <div class="section-tag">Out of Character</div>
+            <div class="panel-tag">Out of Character</div>
           </div>
           <div class="grid">
             <div class="info-box">
@@ -619,13 +519,13 @@
           </div>
         </section>
 
-        <section class="section-card reveal" id="ic">
-          <div class="section-head">
+        <section class="panel" id="ic">
+          <div class="panel-head">
             <div>
               <h2>IC Informationen</h2>
               <p>Alle relevanten Ingame-Angaben, passend zur Rolle und zum Serverumfeld.</p>
             </div>
-            <div class="section-tag">In Character</div>
+            <div class="panel-tag">In Character</div>
           </div>
           <div class="grid">
             <div class="info-box">
@@ -651,13 +551,13 @@
           </div>
         </section>
 
-        <section class="section-card reveal" id="karriere">
-          <div class="section-head">
+        <section class="panel" id="karriere">
+          <div class="panel-head">
             <div>
               <h2>Karriere</h2>
               <p>Mein Weg auf dem Server und meine Entwicklung bis zur Bewerbung als Administrator.</p>
             </div>
-            <div class="section-tag">Werdegang</div>
+            <div class="panel-tag">Werdegang</div>
           </div>
           <div class="timeline">
             <div class="timeline-item">
@@ -684,13 +584,13 @@
           </div>
         </section>
 
-        <section class="section-card reveal" id="staerken">
-          <div class="section-head">
+        <section class="panel" id="staerken">
+          <div class="panel-head">
             <div>
               <h2>Stärken</h2>
               <p>Eigenschaften, die für eine Position im Team besonders wichtig sind.</p>
             </div>
-            <div class="section-tag">Kompetenzen</div>
+            <div class="panel-tag">Kompetenzen</div>
           </div>
           <div class="grid">
             <div class="info-box">
@@ -712,13 +612,13 @@
           </div>
         </section>
 
-        <section class="section-card reveal" id="erfahrung">
-          <div class="section-head">
+        <section class="panel" id="erfahrung">
+          <div class="panel-head">
             <div>
               <h2>Erfahrung</h2>
               <p>Bisherige praktische Erfahrungen im Umgang mit Support, Regeln und Community.</p>
             </div>
-            <div class="section-tag">Praxis</div>
+            <div class="panel-tag">Praxis</div>
           </div>
           <div class="grid">
             <div class="info-box">
@@ -740,13 +640,13 @@
           </div>
         </section>
 
-        <section class="section-card reveal" id="motivation">
-          <div class="section-head">
+        <section class="panel" id="motivation">
+          <div class="panel-head">
             <div>
               <h2>Motivation</h2>
               <p>Warum ich Administrator werden möchte und welchen Mehrwert ich dem Team bringe.</p>
             </div>
-            <div class="section-tag">Beweggrund</div>
+            <div class="panel-tag">Beweggrund</div>
           </div>
           <div class="quote">
             Ich möchte als Administrator Verantwortung übernehmen und Grand RP DE01 aktiv unterstützen.
@@ -755,13 +655,13 @@
           </div>
         </section>
 
-        <section class="section-card reveal" id="kontakt">
-          <div class="section-head">
+        <section class="panel" id="kontakt">
+          <div class="panel-head">
             <div>
               <h2>Kontakt</h2>
               <p>Alle wichtigen Kontaktmöglichkeiten für Rückfragen oder ein Gespräch.</p>
             </div>
-            <div class="section-tag">Kontakt</div>
+            <div class="panel-tag">Kontakt</div>
           </div>
           <div class="grid">
             <div class="info-box">
@@ -785,36 +685,24 @@
       </main>
     </div>
 
-    <div class="footer">Grand RP DE01 • Admin Bewerbung • klassisch inspiriertes modernes Design</div>
+    <div class="footer">Grand RP DE01 • Admin Bewerbung • Kategorien als eigene Ansichten</div>
   </div>
 
   <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.12 });
-
-    reveals.forEach(el => observer.observe(el));
-
     const navLinks = document.querySelectorAll('.nav-link');
-    const sections = [...document.querySelectorAll('main section')];
+    const panels = document.querySelectorAll('.panel');
 
-    const setActive = () => {
-      let currentId = sections[0].id;
-      sections.forEach(section => {
-        const top = section.getBoundingClientRect().top;
-        if (top <= 180) currentId = section.id;
+    function openPanel(panelId) {
+      panels.forEach(panel => panel.classList.toggle('active', panel.id === panelId));
+      navLinks.forEach(link => link.classList.toggle('active', link.dataset.panel === panelId));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        openPanel(link.dataset.panel);
       });
-
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
-      });
-    };
-
-    window.addEventListener('scroll', setActive);
-    window.addEventListener('load', setActive);
+    });
   </script>
 </body>
 </html>
