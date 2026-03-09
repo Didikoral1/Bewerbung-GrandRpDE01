@@ -3,50 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>LSPD High Command Bewerbung – Mark Carletto</title>
 
 <style>
 
-:root{
---bg:#061018;
---panel:#0e1b28;
---panel2:#132434;
---line:rgba(255,255,255,0.08);
---accent:#78bbff;
---gold:#d7b66e;
---text:#eef5ff;
---muted:#9fb3cc;
-}
-
-*{box-sizing:border-box;margin:0;padding:0}
-
 body{
-font-family:Inter,Arial;
-color:var(--text);
-background:
-radial-gradient(circle at 20% 10%,rgba(120,187,255,0.12),transparent 20%),
-radial-gradient(circle at 90% 5%,rgba(215,182,110,0.08),transparent 25%),
-#061018;
+margin:0;
+font-family:Arial;
+background:#07111a;
+color:white;
 }
 
-/* LSPD WATERMARK */
+/* LSPD Wasserzeichen */
+
 body::after{
 content:"";
 position:fixed;
 inset:0;
-background-image:url("TOW.png");
-background-repeat:no-repeat;
-background-position:center;
+background:url("TOW.png") center no-repeat;
 background-size:700px;
-opacity:0.05;
+opacity:0.04;
 pointer-events:none;
 }
 
+/* Banner */
+
 .banner{
-width:100%;
-height:480px;
-overflow:hidden;
 position:relative;
+height:500px;
+overflow:hidden;
 }
 
 .banner img{
@@ -55,30 +41,63 @@ height:100%;
 object-fit:cover;
 }
 
-.banner::before{
-content:"";
+.bannerOverlay{
 position:absolute;
 inset:0;
-background:linear-gradient(180deg,rgba(0,0,0,0.1),rgba(6,16,24,0.9));
+background:linear-gradient(180deg,transparent,#07111a);
 }
 
-.bannerText{
+/* Police lights */
+
+.light{
+position:absolute;
+top:0;
+width:40%;
+height:100%;
+filter:blur(60px);
+opacity:0.2;
+mix-blend-mode:screen;
+animation:flash 3s infinite;
+}
+
+.red{
+background:red;
+left:-10%;
+}
+
+.blue{
+background:#4db8ff;
+right:-10%;
+animation-delay:1.5s;
+}
+
+@keyframes flash{
+0%{opacity:0.05}
+25%{opacity:0.25}
+50%{opacity:0.05}
+75%{opacity:0.25}
+100%{opacity:0.05}
+}
+
+/* Titel */
+
+.title{
 position:absolute;
 bottom:40px;
-left:60px;
-max-width:800px;
+left:40px;
 }
 
-.bannerText h1{
-font-size:70px;
-letter-spacing:-2px;
+.title h1{
+font-size:60px;
+margin:0;
 }
 
-.bannerText h2{
-color:var(--gold);
-font-weight:600;
-margin-top:6px;
+.title h2{
+color:gold;
+margin:0;
 }
+
+/* Navigation */
 
 .nav{
 display:grid;
@@ -89,17 +108,18 @@ padding:20px;
 
 .nav button{
 padding:14px;
-background:var(--panel);
-border:1px solid var(--line);
+border:none;
+background:#0f1e2d;
 color:white;
 border-radius:8px;
 cursor:pointer;
-font-weight:600;
 }
 
 .nav button:hover{
-background:var(--panel2);
+background:#13293f;
 }
+
+/* Panels */
 
 .panel{
 display:none;
@@ -112,18 +132,16 @@ margin:auto;
 display:block;
 }
 
+/* Section */
+
 .section{
-background:var(--panel);
+background:#0f1e2d;
 padding:30px;
 border-radius:10px;
-border:1px solid var(--line);
 margin-bottom:25px;
 }
 
-.section h3{
-margin-bottom:10px;
-color:var(--accent);
-}
+/* Cards */
 
 .cards{
 display:grid;
@@ -132,102 +150,126 @@ gap:20px;
 }
 
 .card{
-background:var(--panel2);
+background:#13293f;
 padding:20px;
-border-radius:10px;
-border:1px solid var(--line);
+border-radius:8px;
 }
+
+/* Timeline */
 
 .timeline{
 display:grid;
-gap:15px;
+gap:12px;
 }
 
-.timelineItem{
-background:var(--panel2);
-padding:20px;
-border-left:4px solid var(--accent);
+.timeline div{
+background:#13293f;
+padding:16px;
+border-left:4px solid #4db8ff;
+}
+
+/* Formular */
+
+input,textarea{
+width:100%;
+padding:12px;
+margin-top:8px;
+margin-bottom:12px;
+border:none;
 border-radius:6px;
 }
 
-.signatureArea{
+button.send{
+background:#4db8ff;
+border:none;
+padding:12px;
+color:white;
+cursor:pointer;
+}
+
+/* Signatur */
+
+.signature{
 margin-top:40px;
-padding:30px;
-background:var(--panel);
-border:1px solid var(--line);
-border-radius:10px;
 text-align:right;
 }
 
 .signatureName{
 font-family:cursive;
-font-size:38px;
-margin-top:20px;
+font-size:36px;
 }
+
+/* Footer */
 
 .footer{
 text-align:center;
 padding:30px;
-color:var(--muted);
-}
-
-@media(max-width:900px){
-
-.cards{grid-template-columns:1fr}
-
-.nav{grid-template-columns:1fr}
-
-.bannerText h1{font-size:42px}
-
+color:#888;
 }
 
 </style>
 </head>
+
 <body>
 
 <div class="banner">
+
 <img src="TOW.png">
-<div class="bannerText">
+
+<div class="light red"></div>
+<div class="light blue"></div>
+
+<div class="bannerOverlay"></div>
+
+<div class="title">
 <h1>Mark Carletto</h1>
 <h2>22. Dep. Head of Department</h2>
 </div>
+
 </div>
 
+
 <div class="nav">
+
 <button onclick="openPanel('home')">Start</button>
 <button onclick="openPanel('anschreiben')">Anschreiben</button>
 <button onclick="openPanel('laufbahn')">Laufbahn</button>
 <button onclick="openPanel('ic')">IC Daten</button>
 <button onclick="openPanel('ooc')">OOC Daten</button>
 <button onclick="openPanel('kontakt')">Kontakt</button>
+
 </div>
 
 
 <!-- START -->
+
 <div id="home" class="panel active">
 
 <div class="section">
-<h3>Bewerbungsziel</h3>
+
+<h2>Bewerbungsziel</h2>
+
 <p>
-Mit dieser Bewerbung möchte ich meine Erfahrung und meine Laufbahn innerhalb des Los Santos Police Departments darstellen und mich für eine Position im High Command empfehlen.
+Mit dieser Bewerbung möchte ich meine Erfahrung und meine Laufbahn im Los Santos Police Department darstellen und mich für eine Position im High Command empfehlen.
 </p>
+
 </div>
 
 <div class="cards">
 
 <div class="card">
 <h3>Dienstbeginn</h3>
-<p>05.10.2025 im LSPD eingestellt.</p>
+05.10.2025
 </div>
 
 <div class="card">
 <h3>Gesetzeskenntnisse</h3>
-<p>Sehr gute Kenntnisse der Gesetze und internen Abläufe.</p>
+Sehr gute Kenntnisse
 </div>
 
 <div class="card">
 <h3>Führungsstil</h3>
-<p>Respektvoll, strukturiert und mit Vorbildfunktion.</p>
+Respektvoll und strukturiert
 </div>
 
 </div>
@@ -236,19 +278,28 @@ Mit dieser Bewerbung möchte ich meine Erfahrung und meine Laufbahn innerhalb de
 
 
 <!-- ANSCHREIBEN -->
+
 <div id="anschreiben" class="panel">
 
 <div class="section">
-<h3>Anschreiben</h3>
+
+<h2>Anschreiben</h2>
 
 <p>
-Sehr geehrte Damen und Herren,<br><br>
+
+Sehr geehrte Damen und Herren,
+
+<br><br>
 
 ich bin seit dem 05.10.2025 im LSPD angestellt. Ich habe gute Gesetzeskenntnisse und kenne mich intern im LSPD gut aus.
 
-Momentan sowie in der Zukunft bin ich meist ab 12 Uhr wach und bin innerhalb des PDs auch immer erreichbar, entweder IC sowie auch über D‑Funk.
+<br><br>
 
-Ich behandle jeden mit Respekt und versuche immer eine Vorbildfunktion einzunehmen.
+Momentan sowie in der Zukunft bin ich meist ab 12 Uhr wach und innerhalb des PDs jederzeit erreichbar, entweder IC oder über D-Funk.
+
+<br><br>
+
+Ich behandle jeden mit Respekt und versuche stets eine Vorbildfunktion einzunehmen.
 
 </p>
 
@@ -258,24 +309,26 @@ Ich behandle jeden mit Respekt und versuche immer eine Vorbildfunktion einzunehm
 
 
 <!-- LAUFBAHN -->
+
 <div id="laufbahn" class="panel">
 
 <div class="section">
-<h3>Laufbahn im LSPD</h3>
+
+<h2>Laufbahn im LSPD</h2>
 
 <div class="timeline">
 
-<div class="timelineItem">Einstellung als Traffic Officer</div>
-<div class="timelineItem">Rookie</div>
-<div class="timelineItem">TOW Ausbilder</div>
-<div class="timelineItem">TOW Ausbildungsleiter</div>
-<div class="timelineItem">Beitritt IU</div>
-<div class="timelineItem">Beitritt CRD</div>
-<div class="timelineItem">Stellv. TOW Leitung</div>
-<div class="timelineItem">Beitritt TF</div>
-<div class="timelineItem">Wiedereinstellung</div>
-<div class="timelineItem">Stellv. IU Leitung</div>
-<div class="timelineItem">Beitritt PA</div>
+<div>Traffic Officer</div>
+<div>Rookie</div>
+<div>TOW Ausbilder</div>
+<div>TOW Ausbildungsleiter</div>
+<div>Beitritt IU</div>
+<div>Beitritt CRD</div>
+<div>Stellv. TOW Leitung</div>
+<div>Beitritt TF</div>
+<div>Wiedereinstellung</div>
+<div>Stellv. IU Leitung</div>
+<div>Beitritt PA</div>
 
 </div>
 
@@ -285,19 +338,19 @@ Ich behandle jeden mit Respekt und versuche immer eine Vorbildfunktion einzunehm
 
 
 <!-- IC -->
+
 <div id="ic" class="panel">
 
 <div class="section">
-<h3>IC Daten</h3>
 
-<p>
+<h2>IC Daten</h2>
+
 Name: Mark Carletto<br>
-Telefon: 11‑18‑836<br>
+Telefon: 11-18-836<br>
 Visum: 25<br>
 Rang: 22. Dep. Head of Department<br>
 Im PD seit: 05.10.2025<br>
 Wohnort: Haus 1906
-</p>
 
 </div>
 
@@ -305,17 +358,17 @@ Wohnort: Haus 1906
 
 
 <!-- OOC -->
+
 <div id="ooc" class="panel">
 
 <div class="section">
-<h3>OOC Daten</h3>
 
-<p>
+<h2>OOC Daten</h2>
+
 Name: Fynn S.<br>
 Alter: 21 (01.10.2004)<br>
 Beruf: Soldat seit dem 01.03.2022<br>
 Hobbys: LSPD im Staat, Fitness, Kochen
-</p>
 
 </div>
 
@@ -323,31 +376,41 @@ Hobbys: LSPD im Staat, Fitness, Kochen
 
 
 <!-- KONTAKT -->
+
 <div id="kontakt" class="panel">
 
 <div class="section">
-<h3>Kontakt</h3>
 
-<p>
-Discord: Didikoral<br>
-Telefon: 11‑18‑836
-</p>
+<h2>Kontaktformular</h2>
+
+<form action="https://formspree.io/f/xjgagqrg" method="POST">
+
+<label>Name</label>
+<input type="text" name="name" required>
+
+<label>Email</label>
+<input type="email" name="email" required>
+
+<label>Nachricht</label>
+<textarea name="message" required></textarea>
+
+<button class="send" type="submit">Nachricht senden</button>
+
+</form>
 
 </div>
 
 
-<div class="signatureArea">
+<div class="signature">
 
-<p>Mit freundlichen Grüßen</p>
+Mit freundlichen Grüßen
 
 <div class="signatureName">
 Mark Carletto
 </div>
 
-<p>
 22. Dep. Head of Department<br>
 Los Santos Police Department
-</p>
 
 </div>
 
@@ -358,21 +421,21 @@ Los Santos Police Department
 LSPD High Command Bewerbung – Mark Carletto
 </div>
 
+
 <script>
 
 function openPanel(id){
 
-let panels=document.querySelectorAll('.panel')
+document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"))
 
-panels.forEach(p=>p.classList.remove('active'))
+document.getElementById(id).classList.add("active")
 
-document.getElementById(id).classList.add('active')
-
-window.scrollTo({top:0,behavior:'smooth'})
+window.scrollTo(0,0)
 
 }
 
 </script>
+
 
 </body>
 </html>
