@@ -49,21 +49,15 @@
     }
 
     .page {
-      width: min(1380px, calc(100% - 20px));
-      margin: 0 auto;
-      padding: 14px 0 28px;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 14px 14px 28px;
       position: relative;
       z-index: 1;
     }
 
-    .banner {
-      position: relative;
-      width: 100%;
-      min-height: 420px;
-      border-radius: 30px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
+    --shadow);
       margin-bottom: 16px;
       background: #08111b;
     }
@@ -189,30 +183,9 @@
       gap: 14px;
       padding: 14px 18px;
       border: 1px solid var(--line);
-      border-radius: 999px;
+      border-radius: 18px;
       background: rgba(8, 15, 24, 0.88);
-      backdrop-filter: blur(14px);
-      box-shadow: var(--shadow);
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-      position: sticky;
-      top: 10px;
-      z-index: 20;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .badge {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--accent), #477fbb);
+      backdrop-f-accent), #477fbb);
       color: white;
       font-weight: 900;
       box-shadow: 0 12px 30px rgba(124,193,255,0.24);
@@ -265,9 +238,9 @@
     }
 
     .nav {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
       gap: 10px;
-      flex-wrap: wrap;
       margin-bottom: 16px;
     }
 
@@ -287,15 +260,7 @@
     .nav button.active {
       border-color: var(--line-strong);
       background: linear-gradient(135deg, rgba(124,193,255,0.14), rgba(215,182,110,0.10));
-      transform: translateY(-1px);
-    }
-
-    .section-panel,
-    .card,
-    .timeline-body,
-    .contact-card,
-    .quote,
-    .info-strip {
+      transform: translateY(-info-strip {
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: linear-gradient(180deg, rgba(13,24,38,0.98), rgba(10,18,29,0.99));
@@ -324,7 +289,7 @@
     .section-panel {
       display: none;
       padding: 28px;
-      animation: fade .28s ease;
+  fade .28s ease;
     }
 
     .section-panel.active { display: block; }
@@ -358,18 +323,14 @@
     }
 
     .tag {
-      white-space: nowrap;
-      padding: 10px 14px;
+      14px;
       border-radius: 999px;
       color: var(--accent);
-      border: 1px solid var(--line-strong);
+    );
       background: rgba(124,193,255,0.08);
       font-size: .84rem;
       font-weight: 700;
-      position: relative;
-      z-index: 1;
-    }
-
+      pos
     .info-strip {
       padding: 20px;
       margin-bottom: 18px;
@@ -447,18 +408,10 @@
     }
 
     .timeline-date {
-      border-radius: 20px;
-      border: 1px solid var(--line-strong);
-      background: linear-gradient(180deg, rgba(124,193,255,0.12), rgba(124,193,255,0.05));
-      padding: 18px 12px;
-      text-align: center;
-      color: var(--accent);
+      border-radius: 20pd: linear-gradient(180deg, rgba(124,193,255,0.12), rgba(124,193,255,0.05));
+    ar(--accent);
       font-weight: 800;
-      box-shadow: inset 0 0 0 1px rgba(124,193,255,0.04);
-    }
-
-    .timeline-body {
-      padding: 20px;
+      box-shadow: inset 0 0 0 1px rgba(124dding: 20px;
     }
 
     .quote {
@@ -538,7 +491,7 @@
     }
 
     @media (max-width: 720px) {
-      .page { width: min(100% - 12px, 1380px); }
+      .page { width: 100%; padding: 8px 8px 20px; }
       .section-panel,
       .contact-card,
       .info-strip { padding: 18px; }
@@ -546,6 +499,7 @@
       .topbar { border-radius: 22px; }
       .nav { gap: 8px; }
       .nav button { width: 100%; }
+      .nav { grid-template-columns: 1fr; }
       .banner { min-height: 520px; }
       .banner img { min-height: 520px; }
     }
@@ -570,9 +524,7 @@
             <small>Im Police Department seit dem 05.10.2025.</small>
           </div>
           <div class="hero-stat">
-            <span>Erreichbarkeit</span>
-            <strong>IC & D-Funk</strong>
-            <small>Regelmäßig erreichbar und präsent.</small>
+                 <small>Regelmäßig erreichbar und präsent.</small>
           </div>
           <div class="hero-stat">
             <span>Profil</span>
@@ -612,6 +564,10 @@
     </nav>
 
     <div class="panels">
+      <div class="info-strip" style="margin-bottom:16px;">
+        <h4>Vollflächiges Layout</h4>
+        <p>Die Seite wurde jetzt so angepasst, dass sie den verfügbaren Platz deutlich stärker ausfüllt. Banner, Navigation und Inhaltsbereiche gehen nun fast über die komplette Breite, damit die Website nicht mehr nur wie ein Block in der Mitte wirkt.</p>
+      </div>
       <section class="section-panel active" id="home">
         <div class="section-head">
           <div>
@@ -623,7 +579,7 @@
 
         <div class="info-strip">
           <h4>Bewerbungsziel</h4>
-          <p>Ich möchte mit dieser Bewerbung meine Erfahrung, meine Laufbahn und meine Eignung für eine Position im High Command des LSPD darstellen – strukturiert, übersichtlich und professionell.</p>
+          <p>Ich möchte mit dieser Bewerbung meine Erfahrung, meine Laufbahn und meine Eignung für eine Position im High Coellen – strukturiert, übersichtlich und professionell.</p>
         </div>
 
         <div class="cards-3">
@@ -789,7 +745,7 @@
       </section>
     </div>
 
-    <div class="footer">LSPD High Command Bewerbung • Police Look • Bannerbild eingebunden</div>
+    <div class="footer">LSPD High Command Bewerbung •  Bannerbild eingebunden</div>
   </div>
 
   <script>
